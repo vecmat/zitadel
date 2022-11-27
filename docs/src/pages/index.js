@@ -5,6 +5,7 @@ import Layout from "@theme/Layout";
 import ThemedImage from "@theme/ThemedImage";
 import clsx from "clsx";
 import React from "react";
+import Translate ,{translate}from '@docusaurus/Translate';
 
 import Column from "../components/column";
 import {
@@ -22,10 +23,10 @@ const features = [
     lightImageUrl: "img/index/Guides-light.svg",
     link: "guides/overview",
     description: (
-      <>
+      <Translate>
         Read our guides on how to manage your data and role associations in
         ZITADEL and on what we recommend.
-      </>
+      </Translate>
     ),
     content: (
       <ListWrapper>
@@ -34,7 +35,7 @@ const features = [
             <ListElement
               link="/docs/guides/start/quickstart"
               type={ICONTYPE.START}
-              title="Get started"
+              title={translate("Get started")}
               description=""
             />
             <ListElement
@@ -46,13 +47,13 @@ const features = [
             <ListElement
               link="/docs/guides/integrate/login-users"
               type={ICONTYPE.LOGIN}
-              title="Login Users"
+              title={translate("Login Users")}
               description=""
             />
             <ListElement
               link="/docs/guides/integrate/access-zitadel-apis"
               type={ICONTYPE.APIS}
-              title="Access APIs"
+              title={translate("Access APIs")}
               description=""
             />
           </div>
@@ -62,25 +63,25 @@ const features = [
               iconClasses="las la-paragraph"
               roundClasses="custom-rounded custom-rounded-split"
               label="B2C"
-              title="Solution Scenarios"
+              title={translate("Solution Scenarios")}
               description=""
             />
             <ListElement
               link="/docs/guides/manage/customize/branding"
               type={ICONTYPE.PRIVATELABELING}
-              title="Customization"
+              title={translate("Customization")}
               description=""
             />
             <ListElement
               link="/docs/self-hosting/deploy/overview"
               type={ICONTYPE.SYSTEM}
-              title="Deploy"
+              title={translate("Deploy")}
               description=""
             />
             <ListElement
               link="/docs/guides/trainings/introduction"
               type={ICONTYPE.STORAGE}
-              title="Trainings"
+              title={translate("Trainings")}
               description=""
             />
           </div>
@@ -94,10 +95,10 @@ const features = [
     lightImageUrl: "img/index/Quickstarts-light.svg",
     link: "examples/introduction",
     description: (
-      <>
+      <Translate>
         Learn how to integrate your applications and build secure workflows and
         APIs with ZITADEL
-      </>
+      </Translate>
     ),
     content: (
       <div className={styles.quickstartcontainer}>
@@ -135,7 +136,7 @@ const features = [
     lightImageUrl: "/docs/img/index/APIs-light.svg",
     link: "/apis/introduction",
     description: (
-      <>Learn more about our APIs and how to integrate them in your apps.</>
+      <Translate>Learn more about our APIs and how to integrate them in your apps.</Translate>
     ),
     content: (
       <div className={styles.apilinks}>
@@ -143,14 +144,14 @@ const features = [
           <ListElement
             link="/docs/apis/proto/auth"
             type={ICONTYPE.APIS}
-            title="Proto Definitions"
+            title={translate("Proto Definitions")}
             description=""
           />
           <ListElement
             link="/docs/apis/openidoauth/endpoints"
             type={ICONTYPE.APIS}
-            title="OpenID Connect and OAuth"
-            description="Scopes, Claims, Authentication Methods, Grant Types"
+            title={translate("OpenID Connect and OAuth")}
+            description={translate("Scopes, Claims, Authentication Methods, Grant Types")}
           />
         </ListWrapper>
       </div>
@@ -162,30 +163,30 @@ const features = [
     lightImageUrl: "img/index/Concepts-light.svg",
     link: "concepts/introduction",
     description: (
-      <>
+      <Translate>
         Learn more about engineering and design principles, ZITADELs
         architecture and used technologies.
-      </>
+      </Translate>
     ),
     content: (
       <ListWrapper>
         <ListElement
           link="/docs/concepts/principles"
           type={ICONTYPE.TASKS}
-          title="Principles"
-          description="Design and engineering principles"
+          title={translate("Principles")}
+          description={translate("Design and engineering principles")}
         />
         <ListElement
           link="/docs/concepts/architecture/software"
           type={ICONTYPE.ARCHITECTURE}
-          title="Architecture"
-          description="Sotware-, Cluster- and Multi Cluster Architecture"
+          title={translate("Architecture")}
+          description={translate("Sotware-, Cluster- and Multi Cluster Architecture")}
         />
         <ListElement
           link="/docs/concepts/structure/overview"
           type={ICONTYPE.ARCHITECTURE}
-          title="Structure"
-          description="Object structure of ZITADEL"
+          title={translate("Structure")}
+          description={translate("Object structure of ZITADEL")}
         />
       </ListWrapper>
     ),

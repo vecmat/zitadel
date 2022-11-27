@@ -22,6 +22,26 @@ module.exports = {
     description:
       "Documentation for ZITADEL - The best of Auth0 and Keycloak combined. Built for the serverless era.",
   },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+    localeConfigs: {
+        en: {
+            label: 'English',
+            direction: 'ltr',
+            htmlLang: 'en-US',
+            calendar: 'gregory',
+            path: 'en',
+        },
+        zh: {
+            label: '简体中文',
+            direction: 'ltr',
+            htmlLang: 'zh',
+            calendar: 'gregory',
+            path: 'zh',
+        }
+    }
+  },
   themeConfig: {
     metadata: [
       {
@@ -90,7 +110,12 @@ module.exports = {
           position: "left",
         },
         {
-          type: "html",
+            type: 'localeDropdown',
+            position: 'right',
+        },
+        {
+          href: "https://github.com/zitadel/zitadel",
+          label: "GitHub",
           position: "right",
           value:
             '<a href="https://github.com/zitadel/zitadel/discussions" style="text-decoration: none; width: 20px; height: 24px; display: flex"><i class="las la-comments"></i></a>',
