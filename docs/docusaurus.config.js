@@ -21,6 +21,26 @@ module.exports = {
   customFields: {
     description: "Documentation for ZITADEL - The best of Auth0 and Keycloak combined. Built for the serverless era.",
   },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+    localeConfigs: {
+        en: {
+            label: 'English',
+            direction: 'ltr',
+            htmlLang: 'en-US',
+            calendar: 'gregory',
+            path: 'en',
+        },
+        zh: {
+            label: '简体中文',
+            direction: 'ltr',
+            htmlLang: 'zh',
+            calendar: 'gregory',
+            path: 'zh',
+        }
+    }
+  },
   themeConfig: {
     metadata: [{name: 'keywords', content: 'zitadel, documentation, jwt, saml, oauth2, authentication, serverless, login, auth, authorization, sso, openid-connect, oidc, mfa, 2fa, passkeys, fido2, docker'}],
     zoom: {
@@ -75,6 +95,10 @@ module.exports = {
           docId: "legal/introduction",
           label: "Legal",
           position: "left",
+        },
+        {
+            type: 'localeDropdown',
+            position: 'right',
         },
         {
           href: "https://github.com/zitadel/zitadel",
