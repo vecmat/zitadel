@@ -1,0 +1,27 @@
+---
+title: 概览
+---
+
+import {ListElement, ListWrapper, ICONTYPE} from '@site/src/components/list';
+import Column from '@site/src/components/column';
+
+在本节中，我们为不同的用户简介提供手册。
+
+<ListWrapper title="用户配置方案/日志">
+  <Column>
+    <div>
+      <ListElement link="/docs/manuals/user-profile#change-password" type={ICONTYPE.HELP_PASSWORD} title="密码" description="Change your ZITADEL password" />
+      <ListElement link="/docs/manuals/user-profile#change-email" type={ICONTYPE.HELP_EMAIL} title="电子邮件地址" description="Change your email address" />
+      <ListElement link="/docs/manuals/user-profile#change-phone" type={ICONTYPE.HELP_PHONE} title="电话" description="Change your phone number" />
+      <ListElement link="/docs/manuals/user-profile#identity-providers" type={ICONTYPE.HELP_SOCIAL} title="社交登录" description="Link an external Identity Provider with your accoun" />
+      <ListElement link="/docs/manuals/user-profile#passwordless" type={ICONTYPE.HELP_PASSWORDLESS} title="无密码" description="Authenticate with your fingerprint or security key." />
+      <ListElement link="/docs/manuals/user-profile#multifactor-authentication" type={ICONTYPE.HELP_FACTORS} title="因素" description="Enable multifactor authentication for more security" />
+    </div>
+    <div>
+      <ListElement link="/docs/manuals/user-profile#authorization" type={ICONTYPE.POLICY} title="授权" description="Show all the permissions and roles you have" />
+      <ListElement link="/docs/manuals/user-profile#memberships" type={ICONTYPE.ARCHITECTURE} title="成员" description="See the permissions you have within ZITADEL" />
+      <ListElement link="/docs/manuals/user-profile#metadata" type={ICONTYPE.PRIVATELABELING} title="元数据" description="Additional data on your user" />
+      <ListElement link="/docs/manuals/user-login" type={ICONTYPE.LOGIN} title="登录" description="Login with your ZITADEL user" />
+    </div>
+  </Column> 
+</ListWrapper>

@@ -1,0 +1,24 @@
+import ThemedImage from "@theme/ThemedImage";
+
+export default function ReviewConfig(props) { let clientObjects = []; if (clientID(props.appType, props.authType)) { clientObjects.push("id"); } if (clientSecret(props.appType, props.authType)) { clientObjects.push("secret"); } return clientObjects.length > 0 ? (
+    <div>
+      <p>
+        步骤程序的最后一页显示将创建的内容摘要。
+        在您审核了配置后，您可以创建应用程序。
+      </p>
+      <h3>客户端信息</h3>
+      <p>
+        请确保 <b>客户端 {clientObjects.join(" and ")}</b>{" "}
+        安全，以供稍后在应用程序中使用。
+      </p>
+      <img
+        alt="client infos"
+        src={`/img/guides/application/client-${clientObjects.join("-")}.png`}
+        width="700px"
+      />
+    </div>
+  ) : null; }
+
+export function clientID(appType, authType) { return ( ["pkce", "code", "jwt", "post", "implicit", "basic"].includes(authType) || appType === "native" ); }
+
+export function clientSecret(appType, authType) { return ["code", "post", "basic"].includes(authType); }

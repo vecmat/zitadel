@@ -1,0 +1,47 @@
+import ThemedImage from "@theme/ThemedImage";
+import Admonition from "@theme/Admonition";
+
+export default function RedirectURIs(props) { return ["web", "native", "user-agent"].includes(props.appType) ?  (
+    <div>
+      <p>
+        在登录流量中，应用程序定义用户在登录或注销后在重定向到哪里。
+        <br />
+        ZITADEL 验证用户获取重定向的 URL 是否有效通过检查其中一个 URI 是否匹配。
+      </p>
+      <ul>
+        <li>
+          <b>重定向 URI</b> 是在登录过程中验证的。
+        </li>
+        {props.redirectURI? (
+          <ul>
+            <li>
+              The default redirect uri of your app is{" "}
+              <code>{props.redirectURI}</code>
+            </li>
+          </ul>
+        ) : null}
+        <li>
+          <b>注销后的 URI</b> 是在注销过程中验证的。
+        </li>
+        {props.postLogoutURI ? (
+          <ul>
+            <li>
+              您的应用程序的默认帖子注销uri 为{" "}
+              <code>{props.postLogoutURI}</code>
+            </li>
+          </ul>
+        ) : null}
+      </ul>
+      <Admonition type="note">
+        <p>
+          您的应用程序的默认重定向uri 是{" "}
+          <code>{props.redirectURI}</code>
+        </p>
+      </Admonition>
+      <img
+        width="600px"
+        alt="重定向 URI 配置"
+        src={"/img/guides/application/redirect-uris.png"}
+      />
+    </div>
+  ) : null; }

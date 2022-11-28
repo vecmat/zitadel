@@ -1,0 +1,138 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.examples.category.Integrate ZITADEL Login in your App": {
+    "message": "Integrate ZITADEL Login in your App",
+    "description": "The label for category Integrate ZITADEL Login in your App in sidebar examples"
+  },
+  "sidebar.examples.category.Secure your API": {
+    "message": "Secure your API",
+    "description": "The label for category Secure your API in sidebar examples"
+  },
+  "sidebar.examples.category.Call the ZITADEL API": {
+    "message": "Call the ZITADEL API",
+    "description": "The label for category Call the ZITADEL API in sidebar examples"
+  },
+  "sidebar.examples.category.Identity Aware Proxy": {
+    "message": "Identity Aware Proxy",
+    "description": "The label for category Identity Aware Proxy in sidebar examples"
+  },
+  "sidebar.guides.category.Get started": {
+    "message": "Get started",
+    "description": "The label for category Get started in sidebar guides"
+  },
+  "sidebar.guides.category.Deploy": {
+    "message": "Deploy",
+    "description": "The label for category Deploy in sidebar guides"
+  },
+  "sidebar.guides.category.Manage": {
+    "message": "Manage",
+    "description": "The label for category Manage in sidebar guides"
+  },
+  "sidebar.guides.category.Cloud": {
+    "message": "Cloud",
+    "description": "The label for category Cloud in sidebar guides"
+  },
+  "sidebar.guides.category.Self-Hosted": {
+    "message": "Self-Hosted",
+    "description": "The label for category Self-Hosted in sidebar guides"
+  },
+  "sidebar.guides.category.Console": {
+    "message": "Console",
+    "description": "The label for category Console in sidebar guides"
+  },
+  "sidebar.guides.category.Customize": {
+    "message": "Customize",
+    "description": "The label for category Customize in sidebar guides"
+  },
+  "sidebar.guides.category.Terraform": {
+    "message": "Terraform",
+    "description": "The label for category Terraform in sidebar guides"
+  },
+  "sidebar.guides.category.Integrate": {
+    "message": "Integrate",
+    "description": "The label for category Integrate in sidebar guides"
+  },
+  "sidebar.guides.category.Access ZITADEL APIs": {
+    "message": "Access ZITADEL APIs",
+    "description": "The label for category Access ZITADEL APIs in sidebar guides"
+  },
+  "sidebar.guides.category.OpenID Connect 1.0 Clients": {
+    "message": "OpenID Connect 1.0 Clients",
+    "description": "The label for category OpenID Connect 1.0 Clients in sidebar guides"
+  },
+  "sidebar.guides.category.SAML 2.0 Clients": {
+    "message": "SAML 2.0 Clients",
+    "description": "The label for category SAML 2.0 Clients in sidebar guides"
+  },
+  "sidebar.guides.category.Solution Scenarios": {
+    "message": "Solution Scenarios",
+    "description": "The label for category Solution Scenarios in sidebar guides"
+  },
+  "sidebar.guides.category.Trainings": {
+    "message": "Trainings",
+    "description": "The label for category Trainings in sidebar guides"
+  },
+  "sidebar.apis.category.API Definition": {
+    "message": "API Definition",
+    "description": "The label for category API Definition in sidebar apis"
+  },
+  "sidebar.apis.category.Proto": {
+    "message": "Proto",
+    "description": "The label for category Proto in sidebar apis"
+  },
+  "sidebar.apis.category.Assets API": {
+    "message": "Assets API",
+    "description": "The label for category Assets API in sidebar apis"
+  },
+  "sidebar.apis.category.OpenID Connect & OAuth": {
+    "message": "OpenID Connect & OAuth",
+    "description": "The label for category OpenID Connect & OAuth in sidebar apis"
+  },
+  "sidebar.apis.category.SAML": {
+    "message": "SAML",
+    "description": "The label for category SAML in sidebar apis"
+  },
+  "sidebar.apis.category.Observability": {
+    "message": "Observability",
+    "description": "The label for category Observability in sidebar apis"
+  },
+  "sidebar.apis.category.Rate Limits": {
+    "message": "Rate Limits",
+    "description": "The label for category Rate Limits in sidebar apis"
+  },
+  "sidebar.concepts.category.Eventstore": {
+    "message": "Eventstore",
+    "description": "The label for category Eventstore in sidebar concepts"
+  },
+  "sidebar.concepts.category.Architecture": {
+    "message": "Architecture",
+    "description": "The label for category Architecture in sidebar concepts"
+  },
+  "sidebar.concepts.category.Structure": {
+    "message": "Structure",
+    "description": "The label for category Structure in sidebar concepts"
+  },
+  "sidebar.concepts.category.Use Cases": {
+    "message": "Use Cases",
+    "description": "The label for category Use Cases in sidebar concepts"
+  },
+  "sidebar.concepts.category.Features": {
+    "message": "Features",
+    "description": "The label for category Features in sidebar concepts"
+  },
+  "sidebar.legal.category.Service Description": {
+    "message": "Service Description",
+    "description": "The label for category Service Description in sidebar legal"
+  },
+  "sidebar.legal.category.Additional terms": {
+    "message": "Additional terms",
+    "description": "The label for category Additional terms in sidebar legal"
+  },
+  "sidebar.legal.category.Policies": {
+    "message": "Policies",
+    "description": "The label for category Policies in sidebar legal"
+  }
+}

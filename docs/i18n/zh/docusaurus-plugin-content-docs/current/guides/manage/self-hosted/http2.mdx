@@ -1,0 +1,13 @@
+---
+title: HTTP/2 支持
+---
+
+ZITADEL遵循严格的 API 第一方法并大量使用称为 [gRPC](https://grpc.io/) 的现代API框架。 除了gRPC以外，所有API也都可以使用 openapi Rest，同时也可以在 gRPC-web 上获取兼容浏览器集成。
+
+要使我们成为gRPC，必须允许您的客户通过 [HTTP2](https://en.wikipedia.org/wiki/HTTP/2) 与 ZITADEL通信。
+
+有时您需要明确配置，如果您在逆向代理后面运行 ZITADEL，您想要使用 HTTP/2 。您应该在下面找到不同供应商和项目的示例。
+
+此外，必须注意到，默认情况下HTTP-2总是加密的， 但如果您想要从逆向代理或服务网格运行ZITADEL, 则可以通过 [h2c](https://httpd.apache.org/docs/2.4/howto/http2.html) 运行。 当您在一个服务网格内运行ZITADEL时，或者在服务器上提供(如Google Cloud Run, Knite, ...)时，您将需要h2c。
+
+您可以在这里阅读更多关于 ZITADEL的 [TLS 模式](/docs/guides/manage/self-hosted/tls_modes)。

@@ -1,0 +1,30 @@
+---
+title: 概览
+---
+
+选择您的平台并以尽可能最少的配置运行 ZITADEL。
+
+- [Linux](./linux)
+- [MacOS](./macos)
+- [Docker Compose](./compose)
+- [Knative](./knative)
+- [Kubernetes](./kubernetes)
+
+## 必备条件
+
+- 对于测试环境, ZITADEL不需要很多资源, 一个 CPU 和 512MB 内存就足够了。 (有更多CPU, 密码哈希可能更快)
+- 作为仅需存储的 cockroachDB 或 Postgresql (当前测试版)
+
+## 发布
+
+使用ZITADEL的最简单方法是运行我们的容器中的一个
+
+- ZITADEL确实提供了最新稳定的 [个容器图像](https://github.com/zitadel/zitadel/pkgs/container/zitadel)
+- **稳定** 是目前 **production** release of ZITADEL。
+- **最新的** 是 **最后从我们的管道中创建的** 版本需要高频更新。
+
+# 生产设置
+
+一旦您使用本部分中的一个部署指南成功创建了您的第一个测试环境， 您可能想要配置 ZITADEL进行生产并将其嵌入您的系统景观。 要做到这一点，跳转到 [生产设置指南](../manage/self-hosted/production)。
+
+为了达到高可用性，我们建议使用 [Kubernetes](https://kubernetes.io/docs/home/) 集群。 我们有一个官方的 [头盔图](https://artifacthub.io/packages/helm/zitadel/zitadel) 来方便部署和维护。

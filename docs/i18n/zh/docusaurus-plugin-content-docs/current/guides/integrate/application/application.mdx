@@ -1,0 +1,41 @@
+import ThemedImage from "@theme/ThemedImage";
+import AuthType from "./auth-type.mdx";
+import RedirectURIs from "./redirect-uris.mdx";
+import GenerateKey from "./generate-key.mdx";
+import ReviewConfig from "./review-config.mdx";
+
+export default function CreateApp(props) { return (
+    <div>
+      <h3>
+        Create the {props.appName ? props.appname + " app": "application"}
+      </h3>
+      <p>
+        转到您项目的详细页面，然后点击
+        应用程序部分中的 "+"按钮。 这将引导您进入创建向导。
+      </p>
+      <img
+        alt="添加应用程序"
+        src="/img/guides/console/addapplication.png"
+        width="120px"
+      />
+      <p>
+        通过设置名称创建应用程序，然后选择应用程序类型 "Web"
+      </p>
+      <img alt={"create " + props.appType + "preview"} src={"/img/guides/application/create-" + props.appType + "-app.png"} />
+      <h3>选择认证方式</h3>
+      <p>
+        身份验证方法定义登录时的通信方式
+      </p>
+      <AuthType appType={props.appType} authType={props.authType} />
+      <h3>重定向 URI</h3>
+      <RedirectURIs
+        appType={props.appType}
+        redirectURI={props.redirectURI}
+        postLogoutURI={props.postLogoutURI}
+      />
+      <h3>检查您的配置</h3>
+      <ReviewConfig appType={props.appType} authType={props.authType} />
+      <h3>为JWT私钥创建KEY</h3>
+      <GenerateKey appType={props.appType} authType={props.authType} />
+    </div>
+  ); }

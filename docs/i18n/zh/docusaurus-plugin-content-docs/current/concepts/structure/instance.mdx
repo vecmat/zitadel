@@ -1,0 +1,15 @@
+---
+title: 实例
+---
+
+## 实例结构
+
+一个实例是ZITADEL数据层次中的顶级节点。 在一个实例中，系统的所有默认 [设置](/docs/concepts/structure/policies), 例如品牌、登录策略、密码策略等都可以被配置。 一个实例通常运行在一个域名，代表一个发行者 (e.g. login.customer.com)。
+
+一个实例可以包含多个 [组织](/docs/concepts/structure/organizations), 它们反过来也可以代表您自己的公司 (e)。 ……部门、您的商业客户或消费者组织。
+
+阅读更多关于如何在我们的 [实例指南](/docs/guides/manage/console/instance-settings) 中配置您的实例的信息。
+
+## 多个虚拟实例
+
+ZITADEL有虚拟实例的概念。 当从零开始安装 ZITADEL时，总是为您自动创建一个实例。 尽管如此，您可以通过 [system API](/docs/apis/proto/system#addinstance) 添加更多虚拟实例。 如果您有商业客户，这是有用的，而这些客户又有自己服务和自定义域要求的商业客户。 通过提供虚拟的 ZITADEL，您的客户可以在 ZITADEL中找到所有自定义选项。 缩放ZITADEL实例几乎使您能够轻松地将您有限的计算资源分配给所有客户。

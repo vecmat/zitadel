@@ -1,0 +1,61 @@
+---
+title: 负载均衡示例
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import DockerComposeSource from '!!raw-loader!./docker-compose.yaml'
+import ExampleTraefikSource from '!!raw-loader!./example-traefik.yaml'
+import ExampleZITADELConfigSource from '!!raw-loader!./example-zitadel-config.yaml'
+import ExampleZITADELSecretsSource from '!!raw-loader!./example-zitadel-secrets.yaml'
+import ExampleZITADELInitStepsSource from '!!raw-loader!./example-zitadel-init-steps.yaml'
+
+通过这个示例配置，您在 [Docker Compose](https://docs.docker.com/compose/) 的基础上为 ZITADEL创建了一个附近的生产环境。
+
+堆栈由三个长运集装箱组成：
+- [Traefik](https://doc.traefik.io/traefik/) 逆向代理启用了上游HTTP-2，签发了一个自签名的TLS证书。
+- 一个为自定义域配置的安全的 ZITADEL容器。 当我们以 Traefik终止TLS 时，我们为 `--tlsMode 外部` 配置 ZITADEL。
+- 安全的 [CockroachDB](https://www.cockroachlabs.com/docs/stable/)。
+
+安装程序测试的 Docker 版本 20.10.17 Docker Compose 版本 v2.2.3
+
+通过执行下面的命令，您将下载以下文件：
+
+<details><summary>docker-compose.yaml</summary>
+    <CodeBlock language="yaml">{DockerComposeSource}</CodeBlock> </details> <details><summary>example-traefik.yaml</summary>
+    <CodeBlock language="yaml">{ExampleTraefikSource}</CodeBlock> </details> <details><summary>example-zitadel-config.yaml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELConfigSource}</CodeBlock> </details> <details><summary>example-zitadel-secrets.yaml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELSecretsSource}</CodeBlock> </details> <details><summary>example-zitadel-init-steps.yaml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELInitStepsSource}</CodeBlock> </details>
+
+```bash
+# Download the docker compose example configuration.
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/depl/loadbalancing-example/docker-compose.yaml
+
+# 下载Traefik 示例配置。
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/depl/loadbalancing-example/example-traefik.yaml
+
+# 下载并调整包含标准配置的示例配置文件。
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/dep/loadbalancing-example/example-zitadel-config.yaml
+
+# 下载并调整包含秘密配置的示例配置文件。
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/depl/loadbalancing-example/example-zitadel-secrets.yaml
+
+# 下载并调整包含数据库初始化配置的示例配置文件。
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/depl/loadbalancing-example/example-zitadel-init-steps aml
+
+# 单个的 ZITADEL实例总需要相同的 32 个字符长级主密钥
+# 如果您还没有这样做， 你可以生成一个新的。
+# For example:
+export ZITADEL_MASTERKEY="$(tr -dc A-Za-z0-9 </dev/urandom | head -c 32)"
+
+# 运行数据库和应用程序容器
+docker compose up --detach
+```
+
+在 `my.domain` 上提供 `127.0.0.0.1` 例如，在 `/etc/hosts` 文件中，可以通过条目 `127.0.1.1 my.domain` 来存档。
+
+在 [https://my.domain/ui/console/](https://my.domain/ui/console/) 打开您最喜欢的互联网浏览器。 如果您的浏览器警告您不安全的自签名TLS证书，您可以安全地继续操作。 这是IAM管理员根据您的配置在 [示例-zitadel-init-steps.yaml](./example-zitadel-init-steps.yaml) 登录：
+- **用户名**: *root@<span></span>my-org.my.domain*
+- **密码**: *RootPassword1!*
+
+阅读更多关于 [登录过程](../../manuals/user-login) 的信息。

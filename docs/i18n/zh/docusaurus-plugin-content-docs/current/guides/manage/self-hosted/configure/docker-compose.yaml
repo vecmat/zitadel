@@ -1,0 +1,59 @@
+version: "3.8"
+services:
+  zitadel:
+    restart: "始终显示"
+    networks:
+      - "zitadel"
+    image: "ghcr.io/zitadel/zitadel:stability"
+    command: 'start-from-init --config /example-zitadel-config.yaml --config /example-zitadel-secrets.yaml --steple-zitadel-init-steps.yaml --masterkey "${ZITADEL_MASTERKEY}" --tlsModel 禁用'
+    depends_on:
+      certs:
+        condition: "服务完成成功"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./example-zitadel-config.yaml:example-zitadel-config.yaml:ro"
+      - "./example-zitadel-secrets.yaml:example-zitadel-secrets.yaml:ro"
+      - "./example-zitadel-init-steps.yaml:/example-zitadel-init-steps.yaml:ro"
+      - "zitadel-certs:/crdb-certs:ro"
+  certs:
+    image: "Cockroachdb/cockroach:v22.1.0"
+    entrypoint:
+      - "/bin/bash"
+      - "-c"
+    command:
+      - "cp /certs/* /zitadel-certs/ && cockroach cert create-client --overwrite --certs-dir /zitadel-certs/ --ca-key /zitadel-certs/ca.key zitadel_user && chown 1000:1000 /zitadel-certs/*"
+    volumes:
+      - "certs:certs:ro"
+      - "zitadel-certs:/zitadel-certs:rw"
+    depends_on:
+      my-cockroach-db:
+        condition: "服务生命值"
+  my-cockroach-db:
+    restart: "始终显示"
+    networks:
+      - "zitadel"
+    image: "Cockroachdb/cockroach:v22.1.0"
+    command: "起始单一节点 --adverse-addr my-cockroach-db"
+    healthcheck:
+      test:
+        - "CMD"
+        - "光标"
+        - "-f"
+        - "http://localhost:8080/health?ready=1"
+      interval: "10 秒"
+      timeout: "30 秒"
+      retries: 5
+      start_period: "20秒"
+    ports:
+      - "9090:8080"
+      - "26257:26257"
+    volumes:
+      - "certs:/cockroach/certs:rw"
+      - "data:/cockroach/cockroach-data:rw"
+networks:
+  zitadel:
+volumes:
+  certs:
+  zitadel-certs:
+  data:

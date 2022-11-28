@@ -1,0 +1,25 @@
+## 外部TLS模式
+
+```
+https://localhost v.
+        reverse_proxy h2c://localhost:8080
+        tls internal #only non-production
+}
+```
+
+## TLS 模式已启用
+
+```
+https://localhost:
+        reverse_proxy https://localhost:8080
+        tls internal #only non-production
+}
+```
+
+## TLS 模式已禁用
+
+```
+http://localhost {
+        reverse_proxy h2c://localhost:8080
+}
+```

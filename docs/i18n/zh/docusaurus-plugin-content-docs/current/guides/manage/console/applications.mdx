@@ -1,0 +1,150 @@
+---
+title: 应用程序
+---
+
+import ThemedImage from "@theme/ThemedImage";
+import AuthType from "../../integrate/application/auth-type.mdx";
+import RedirectURIs from "../../integrate/application/redirect-uris.mdx";
+import GenerateKey from "../../integrate/application/generate-key.mdx";
+import ReviewConfig from "../../integrate/application/review-config.mdx";
+
+# 什么是应用程序？
+
+应用程序是您项目的切入点。 用户要么登录到您的客户端，直接与他们互动，要么使用您的API。 所有应用程序共享其项目的角色和授权。
+
+要访问您的应用，请导航到您的项目，并选择您的应用程序。
+
+<img
+  alt="已授予的项目"
+  src="/img/guides/console/applications.png"
+  width="750px"
+ />
+
+<!-- TODO: oidc vs saml --->
+
+## 创建应用程序
+
+要将应用程序添加到您的项目，请点击添加按钮并选择您的应用程序类型。
+
+<img
+  alt="添加应用程序"
+  src="/img/guides/console/addapplication.png"
+  width="120px"
+ />
+
+## 应用程序类型
+
+目前，ZITADEL提供四种客户类型：
+
+- [**Web**](#web) (塞尔维亚侧的 web 应用程序，例如java, .net, ...)
+- [**原生**](#native) (本地、移动或桌面应用程序)
+- [**用户代理**](#user-agent) (单页应用程序 / SPA 通常在浏览器中执行 JavaScript )
+- [**API**](#api) (OAuth Resource Server)
+
+前三个选项(Web、本地和用户代理)需要用户互动，第四个选项(API)没有直接用户互动。 根据应用类型，在可能的设置中存在小的差异。
+
+要更好地了解用户配置文件和推荐的流程，请阅读以下 [指南](../../integrate/oauth-recommended-flows.md#different-client-profiles)。
+
+### Web
+
+Web 应用程序是 **服务器端渲染的** 应用程序用户交互。 例如，如果您在 Java 或 Razor 在 .NET 中开发了使用 Thymeleaf 的应用程序，或者想要在 Gitlab中启用 SSO 。
+
+典型的 **React或角度** 应用程序 **在此情况下不是** 的 Web 应用程序。 相反的 **下一个** 会因为它允许您实现服务器端的代码。
+
+以下验证类型可以被使用：
+
+<AuthType appType="web" />
+
+### 原生的
+
+本机应用程序安装在一个薄客户端上。 例如在智能手机或计算机上。 这可以是 Android 和 iOS 应用程序。
+
+这些应用使用ZITADEL生成的密钥文件进行验证。
+
+<AuthType appType="native" />
+
+### 用户代理
+
+在 web 浏览器中执行的用户代理应用程序， 例如，在浏览器中使用JavaScript框架开发的单页应用程序，例如 [角](../../../examples/login/angular) 或 [React](../../../examples/login/react)
+
+按照 **身份验证方法** 可以使用：
+
+<AuthType appType="user-agent" />
+
+### API
+
+这些是没有人际交往的应用。 这些应用程序可以通过其他应用程序进入，即机器通信。
+
+以下验证类型可以被使用：
+
+<AuthType appType="api" />
+
+在选择您的应用程序类型和认证方法后，您可能需要指定重定向的 URI。
+
+## 重定向 URI
+
+用户交互的应用程序类型 (Web、本地和用户代理) 需要重定向 URI。 这些重定向 URI 用于将用户重定向到您成功登录的应用程式。
+
+这些URI是在您的应用程序代码中定义的，如果它们与您的应用程序配置相对应，将由ZITADEL检查。 在登录过程中检查重定向URI。 本地应用程序可以使用不同于http 或 https 的协议来重定向您的用户。
+
+<img
+  alt="重定向 URI"
+  src="/img/guides/console/redirecturis.png"
+  width="600px"
+ />
+
+为了 **开发本地** 并由于任何ZITADEL配置默认是安全的， ZITADEL需要您启用 **开发模式** 才能将用户重定向到 https://以外的URI。
+
+## 审核配置
+
+<ReviewConfig authType="code" />
+
+## 应用程序设置
+
+在创建应用程序后，您仍然可以更改其配置，如果您需要离线访问支持(刷新令牌)。 您可以轻松地通过在顶部切换或通过输入和下拉字段更改配置来更改您的验证方法。
+
+> 注意：更改应用程序类型是不可行的。 在此情况下，您必须创建一个新的应用程序。
+
+<img
+  alt="重定向 URI"
+  src="/img/guides/console/application.png"
+  width="800px"
+ />
+
+在页面顶部您可以检查您的应用程序是否符合OIDC。 完成的任务在实地显示。
+
+<img
+  alt="OIDC Compliance"
+  src="/img/guides/console/oidc-compliance.png"
+  width="600px"
+ />
+
+### 令牌设置
+
+在令牌设置中，您可以将类型从 **持有者令牌** 更改为 **JWT**并检查一些设置是否需要用户角色和用户信息在 ID 令牌中。 在底部，您可以选择设置一个 **ClockSkew** 时间，该时间被添加到已发布令牌的到期时间。
+
+<img
+  alt="令牌设置"
+  src="/img/guides/console/app-token-settings.png"
+  width="600px"
+ />
+
+### 重定向设置
+
+像在创建时一样，您可以在这里修改重定向设置。 请注意，对于本地开发，您很可能需要启用开发模式，因为重定向到 http:// 会被阻止。
+
+<img
+  alt="重定向 URI"
+  src="/img/guides/console/redirect-uris.png"
+  width="500px"
+ />
+
+### 额外来源
+
+如果您需要允许额外的来源，但不应使用 **** 作为重定向，您可以在 **额外来源** 部分中指定它们。
+
+<img
+  alt="额外来源"
+  src="/img/guides/console/additional-origins.png"
+  width="500px"
+ />

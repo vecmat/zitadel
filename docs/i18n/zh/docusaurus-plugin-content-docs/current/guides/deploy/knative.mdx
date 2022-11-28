@@ -1,0 +1,62 @@
+---
+title: Knative
+---
+
+import Disclaimer from './_disclaimer.mdx'
+import DefaultUser from './_defaultuser.mdx'
+import Next from './_next.mdx'
+
+## 安装 Knorigin
+
+按照 [Knorighstart 指南](https://knative.dev/docs/getting-started/quickstart-install/) 来获得一种带有Knorigin能力的本地/minikube环境。
+
+## 运行 CockroachDB
+
+启动一个单节点cockroachdb 作为状态集。
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/zitadel/zitadel/main/demand/knative/cockroachdb-statefulset-sin-sinnode.yaml
+```
+
+## 启动 ZITADEL
+
+### Knorigin命令
+
+```bash
+kn service create zitadel \
+--image ghcr.io/zitadel/zitadel:stable \
+--port 8080 \
+--env ZITADEL_DATABASE_COCKROACH_HOST=cockroachdb \
+--env ZITADEL_EXTERNALSECURE=false \
+--env ZITADEL_EXTERNALPORT=80 \
+--env ZITADEL_TLS_ENABLED=false \
+--env ZITADEL_EXTERNALDOMAIN=zitadel.default.127.0.0.1.sslip.io \
+--arg "start-from-init" --arg "--masterkey" --arg "MasterkeyNeedsToHave32Characters" 
+```
+
+### Knavite yaml
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/zitadel/zitadel/main/depl/knative/zitadel-knative-service.yaml
+```
+
+## 访问 ZITADEL
+
+### 获取 ZITADEL URL
+
+```bash
+kn services list
+
+NAME      URL                                         LATEST          AGE   CONDITIONS   READY   REASON
+zitadel   http://zitadel.default.127.0.0.1.sslip.io   zitadel-00001   10m   3 OK / 3     True
+```
+
+将控制台路径添加到网址并在浏览器 http://zitadel.default.127.0.1.sslip.io/ui/console 中打开
+
+如果您没有配置其他东西，这是默认的 IAM 管理员登录：
+
+* username: zitadel-admin@<span></span>zitadel.zitadel.default.127.0.0.1.sslip.io
+* password: Password1!
+
+<Next components={props.components} />
+<Disclaimer components={props.components} />

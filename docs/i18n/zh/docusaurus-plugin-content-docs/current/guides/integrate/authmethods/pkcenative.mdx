@@ -1,0 +1,50 @@
+#### 重定向_uri
+
+本地客户可能必须注册多个重定向_uris，因为操作系统有不同的要求。 通常情况下，您注册一个重定向_uri 以一个自定义协议开始，例如： `ch.zitadel.app://callback`。 您也可以使用 http://localhost, http://127.0.0.1 和 http:[::1] 而不指定端口： `http://locahost/callback`。
+
+#### 发布创建操作
+
+在应用程序创建后，您可能想要设置额外的选项，如 `刷新令牌` 和 `额外的来源`。
+
+如果您想要请求刷新令牌并使用它们来更新用户的访问令牌而不需要他们的交互， 通过勾选复选框，在OIDC 配置部分启用它们。
+
+当调用 userinfo_endpoint 或 ZITADEL API时，我们将检查是否发送了原始信头。 用户代理自动完成 如果您发送了一个，我们将检查您的申请是否允许来源。 默认情况下，所有 来源的 redirect_uri 列表都是允许的。 所以，如果你的原生应用程序是用一个 JavaScript 基础框架构建的，例如ReactNative 并且你只是使用自定义协议指定了 redirect_uris 您将需要添加应用程序从哪里提供的原件，e。 。 `http://localhost:8100`
+
+### 附加参数和自定义
+
+您可以提供额外的参数和值来满足您的使用情况和自定义用户的认证流程。 请在 OAuth / OIDC 文档中检查 [authorization_endpoint 引用](/docs/apis/openidoauth/endpoints#authorization_endpoint)。
+
+## Callback
+
+无论从授权 _endpoint做出了成功或错误响应， 授权服务器将调用 回调端点由 `redirect_uri` 提供的。
+
+:::note
+如果未提供重定向_uri 未注册或任何其他阻止认证服务器表格返回客户端的响应， 该错误将直接显示给认证服务器上的用户。
+:::
+
+验证成功后，您将获得一个 `代码` ，如果提供了未经修改的 `state` 参数。 您将需要 `令牌请求中的代码`。
+
+如果缺少一个参数，错误或发生任何其他错误，您的答案将包含 `错误` 表示错误类型。 可能是一个 `错误描述` 提供了一些关于错误及其原因以及 `状态` 参数的信息。 在authorization_endpoint参考中检查 [错误响应部分](/docs/apis/openidoauth/endpoints#error-response)。
+
+## 令牌请求
+
+接下来你必须交换给定的 `代码` 标记。 对于此 HTTP POST 请求 (form-urlencode ) 您需要提供以下内容：
+
+- 代码：从授权请求中发出的代码
+- grant_type: 必须是 `authorization_code`
+- 重定向_uri：代码发送到的回调uri。 必须完全匹配授权请求的重定向uri
+
+根据您的身份验证方法，您将需要额外的标题和参数：
+
+发送你的 `client_id` 和以前生成的字符串为 `code_verifier` 让我们重新计算验证请求 `的验证码挑战`
+
+```curl
+curl --request POST \
+--url {your-domain}/oauth/v2/token \
+--header 'Content-Type: application/x-www-form-urlencoded'
+--data grant_type=authorization_code \
+--data code=${code} \
+--data redirect_uri=${redirect_uri} \
+--data client_id=${client_id} \
+--data code_verifier=${code_verifier}
+```

@@ -10,8 +10,6 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
-    "crowdinup": "write-translations && crowdin upload",
-    "crowdindown": "crowdin download",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids"
   },

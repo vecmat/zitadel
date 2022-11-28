@@ -1,0 +1,54 @@
+---
+title: 配置选项
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import LinuxUnix from './_linuxunix.mdx'
+import Compose from './_compose.mdx'
+import Helm from './_helm.mdx'
+
+# 配置 ZITADEL
+
+本指南假设您已经熟悉[使用尽可能少的配置运行ZITADEL](../../deploy/overview)
+
+## 配置文件
+
+### 运行时配置
+在源代码中查看所有可能的 _运行时配置_  [ 选项及其默认值](https://github.com/zitadel/zitadel/blob/main/cmd/defaults.yaml)。的描述 `zitadel` 二进制需要此配置的 `--config` 标记。
+
+### 数据库初始化
+除了这些选项外，ZITADEL在 _数据库初始化步骤_ 中使用 [不同的配置](https://github.com/zitadel/zitadel/blob/main/cmd/admin/setup/steps.yaml)。 `zitadel` 二进制需要此配置的 `--steps` 标记。
+
+### 拆分配置
+ZITADEL合并了多个通过 `--config` 和/或多个 `--steps` 标志传递的配置。 这特别有用，如果你想要区别对待标准配置的秘密配置文件。 例如，您可以使用数据库主机名来检查配置。 包含数据库管理员用户名和密码等信息的其他配置，您可以将其交给一个秘密管理员。
+
+## 环境变量
+
+所有配置属性也可以通过 environemnt 变量配置。 前缀 *ZITADEL\_*的密钥前缀，用下划线把正确置于上面，然后加入下划线 _。 例如，如果您想要配置默认的 ZITADEL IAM 管理员用户名和密码， 请确保ZITADEL 二进制运行时间有变量*ZITADEL_FIRSTINSTANCE_ORG_HUMAN_USERNAME* 和*ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD* 设置。
+
+## 主键
+
+主密钥用于AES256加密其他生成的加密密钥。 它需要32字节。 你可以通过三种可能的方式将主密钥传递给zitadel 二进制：
+- 按值：使用标志 `--masterkey My_Master_Key_Which_Has_32_Bytes`
+- 按环境变量 `ZITADEL_MASTERKEY`: 使用旗帜 `--masterkeyFromEnv`
+- 通过文件：使用标志 `--masterkeyfile /path/to/file`
+
+## 通过配置<Tabs groupId="installation-target" default="linuxunix" values={[
+        {'label': 'Linux and Unix', 'value': 'linuxunix'}, 'Docker Compose', 'compose'}, 'Kubernetes (Helm)', 'k8s'} ]} mark =crwd-mark> <TabItem value="linuxunix"> <LinuxUnix/> </TabItem> <TabItem value="compose"> <Compose/> </TabItem> <TabItem value="k8s"> <Helm/> </TabItem> </Tabs>
+
+在 [http://localhost:8080/ui/console](http://localhost:8080/ui/console) 打开您最喜欢的互联网浏览器。 这是IAM管理员根据您的配置在 [示例-zitadel-init-steps.yaml](./example-zitadel-init-steps.yaml) 登录：
+- **用户名**: *root@<span></span>zitadel.localhost*
+- **密码**: *RootPassword1!*
+
+## 下一步
+
+- 阅读更多关于 [登录过程](../../../manuals/user-login) 的信息。
+- 如果你想要在生产中运行 ZITADEL，你当然需要 [自定义你自己的域名](./custom-domain)。
+- 查看所有 [运行时配置属性及其在源代码中的默认值](https://github.com/zitadel/zitadel/blob/main/cmd/defaults.yaml)
+- 查看所有可能的 [设置步骤配置属性及其在源代码中的默认值](https://github.com/zitadel/zitadel/blob/main/cmd/setup/steps.yaml)
+
+:::注意事项
+
+<!-- TODO: Better mark the link in the UI -->
+ZITADEL管理控制台 [需要端到端的 HTTP/2 支持](/docs/guides/manage/self-hosted/http2)

@@ -1,0 +1,40 @@
+---
+title: Linux
+---
+
+import Disclaimer from './_disclaimer.mdx'
+import DefaultUser from './_defaultuser.mdx'
+import Next from './_next.mdx'
+
+## 安装 CockroachDB
+
+Download a `cockroach` binary as described [in the CockroachDB docs](https://www.cockroachlabs.com/docs/v22.1/install-cockroachdb). ZITADEL是根据CockroachDB v22.1.0和Ubuntu 20.04测试的。
+
+## 运行 CockroachDB
+
+```bash
+cockroach start-sinalode --security --background --http-addr :9090 --listen-addr=localhost
+```
+
+## 安装 ZITADEL
+
+根据您的架构从 [Github](https://github.com/zitadel/zitadel/releases/latest) 下载ZITADEL版本
+
+## 解包存档
+移动到您的下载位置并解包存档
+
+```bash
+#unpack and copy to /usr/local/bin
+LATEST=$(curl -i https://github.com/zitadel/zitadel/releases/latest | grep location: | cut -d '/' -f 8 | tr -d '\r'); wget -qO-  https://github.com/zitadel/zitadel/releases/download/$LATEST/zitadel_Linux_$(uname -m).tar.gz  | tar -xz zitadel && sudo mv zitadel /usr/local/bin
+
+```
+
+## 运行 ZITADEL
+
+```bash
+ZITADEL_EXTERNALSECURE=false zitadel start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode 已禁用
+```
+
+<DefaultUser components={props.components} />
+<Next components={props.components} />
+<Disclaimer components={props.components} />

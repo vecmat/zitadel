@@ -1,0 +1,55 @@
+import CodeBlock from '@theme/CodeBlock';
+import ExampleZITADELConfigSource from '!!raw-loader!./example-zitadel-config.yaml'
+import ExampleZITADELSecretsSource from '!!raw-loader!./example-zitadel-secrets.yaml'
+import ExampleZITADELInitStepsSource from '!!raw-loader!./example-zitadel-init-steps.yaml'
+
+### 由文件配置
+
+通过执行下面的命令，您将下载以下文件：
+
+<details><summary>示例-zitadel-config.yaml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELConfigSource}</CodeBlock> </details> <details><summary>示例-zitadel-secret。 aml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELSecretsSource}</CodeBlock> </details> <details><summary>示例-zitadel-init-steps aml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELInitStepsSource}</CodeBlock> </details>
+
+```bash
+# 下载并调整包含标准配置的示例配置文件
+wget https://raw。 ithubusercontent.com/zitadel/zitadel/main/docs/docs/guides/manage/self-hosted/configure/example-zitadel-config.yaml
+
+# 下载并调整包含秘密配置的示例配置文件
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/docs/guides/manage/self-hosted/configure/example-zitadel-secrets. aml
+
+# 下载并调整包含数据库初始化配置的示例配置文件
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/docs/guides/manage/selfhosted/configure/example-zitadel-init-steps aml
+
+# 单个ZITADEL实例始终需要相同的32个字符长老主密钥
+# 如果您还没有这样做， 您可以生成一个新的
+# 密钥必须传递作为参数
+ZITADEL_MASTERKEY="$(tr -dc A-Za-z0-9 </dev/urandom | head -c 32)"
+
+# 配置文件的 Pass zitadel 配置
+zitadel start-from -init \
+    --config 。 示例-zitadel-config.yaml
+    --config ./example-zitadel-secrets.yaml
+    --steps 示例-zitadel-init-steps.yaml \
+    --masterkey "${ZITADEL_MASTERKEY}"
+```
+
+### 环境变量配置
+
+```bash
+# 设置运行环境变量
+导出 ZITADEL_DATABASE_COCKROACH_HOST="my.database"
+导出 ZITADEL_DATABASE_COCKROACH_USER_USERNAME="my_zitadel_db_user"
+导出 ZITADEL_DATABASE_COCKROACH_USER_USER_ASWORD="Secret_DB_Uer_Password"
+导出 ZITADEL_FIRSTINCE_ORG_HUMAN_USERNAME="root"
+导出 ZITADEL_FIRSTINCE_G_HUMAN_PASWORD="RootPassword1!"
+
+# 单个ZITADEL实例总是需要相同的32个字符长大师
+# 如果你还没有这样做， 您可以生成一个新的
+# 密钥必须传递为参数
+导出ZITADEL_MASTERKEY="$(tr -dc A-Za-z0-9 </dev/urandom | head -c 32)"
+
+# 从环境变量中获取zitadel 二进制配置
+zitadel start-from-init --masterkey "${ZITADEL_MASTERKEY}"
+```
