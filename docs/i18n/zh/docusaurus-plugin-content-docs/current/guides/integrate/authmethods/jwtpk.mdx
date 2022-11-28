@@ -1,0 +1,68 @@
+#### 重定向_uri
+
+在选择认证方法后，您可以注册一个重定向库里和post_logout_redirect_uri。 重定向_uri将在用户验证代码交换后被调用。
+
+您甚至可以多次注册，但通常一个就足够了。 如果您需要区分不同的场景 或环境，我们建议使用前者的 `状态` 参数和后者的多个项目。
+
+## 认证请求
+
+初始化用户身份验证， 您必须在用户代理 (browser) 中使用 HTTP GET 创建授权请求，并且至少使用以下参数：
+
+- `client_id`: 这会告诉授权服务器它是什么应用程序, 从控制台复制
+- `重定向_uri`: 在用户认证后将授权码发送到哪里, 必须是前一步注册的一个
+- `response_type`: 如果你想要有一个代码 (授权代码流程) 或直接一个令牌 (隐式流程)， 如有可能使用 `代码`
+- `范围`: 您想给access_token / id_token, 最小值是 `openid`, 如果你不知道你需要什么，你可以以 `openid 配置文件邮件` 开始
+
+我们建议总是使用两个额外参数 `state` and `nonce`. 前者允许您通过 认证过程传输状态。 后者用于将客户端会话绑定为 id_token 并减少重放攻击。
+
+您不需要此请求的任何额外参数。 我们使用 `client_id` 参数来识别应用程序。
+
+所以您的请求可能看起来像这样(出于显示原因的 linebreaks 和空白)：
+
+```curl
+curl --request GET \
+  --url '{your-domain}/oauth/v2/authororder
+    ? lient_id=${client_id}
+    &redirect_uri=${redirect_uri}
+    &response_type=code
+    &scope=openid%20email%20profile'
+```
+
+### 附加参数和自定义
+
+您可以提供额外的参数和值来满足您的使用情况和自定义用户的认证流程。 请在 OAuth / OIDC 文档中检查 [authorization_endpoint 引用](/docs/apis/openidoauth/endpoints#authorization_endpoint)。
+
+## Callback
+
+无论从授权 _endpoint做出了成功或错误响应， 授权服务器将调用 回调端点由 `redirect_uri` 提供的。
+
+:::note
+如果未提供重定向_uri 未注册或任何其他阻止认证服务器表格返回客户端的响应， 该错误将直接显示给认证服务器上的用户。
+:::
+
+验证成功后，您将获得一个 `代码` ，如果提供了未经修改的 `state` 参数。 您将需要 `令牌请求中的代码`。
+
+如果缺少一个参数，错误或发生任何其他错误，您的答案将包含 `错误` 表示错误类型。 可能是一个 `错误描述` 提供了一些关于错误及其原因以及 `状态` 参数的信息。 在authorization_endpoint参考中检查 [错误响应部分](/docs/apis/openidoauth/endpoints#error-response)。
+
+## 令牌请求
+
+接下来你必须交换给定的 `代码` 标记。 对于此 HTTP POST 请求 (form-urlencode ) 您需要提供以下内容：
+
+- 代码：从授权请求中发出的代码
+- grant_type: 必须是 `authorization_code`
+- 重定向_uri：代码发送到的回调uri。 必须完全匹配授权请求的重定向uri
+
+根据您的身份验证方法，您将需要额外的标题和参数：
+
+在 `client_pension` 中发送一个 JWT 并将 `client_assertion_type` 设置为 `urn:ietf:params:oauth:client-assevtion-type:jwt-bearer` 让我们对照注册的公钥验证签名：
+
+```curl
+curl --request POST \
+--url {your-domain}/oauth/v2/token \
+--header 'Content-Type: application/x-www-form-urlencoded'
+--data grant_type=authority_code \
+--data code=${code} \
+--data redirect_uri=${redirect_uri} \
+--data client_assertion=${client_assertion} \
+--data client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-asservtion-type%3Ajwt-bearer
+```

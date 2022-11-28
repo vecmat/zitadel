@@ -1,0 +1,44 @@
+---
+title: 导言
+---
+
+import {ListElement, ListWrapper, ICONTYPE} from '@site/src/components/list';
+import Column from '@site/src/components/column';
+
+**ZITADEL** 文档的这一部分包含了了解系统或我们的指南所需的ZITADEL特定或一般概念。
+
+请注意，ZITADEL是开放源码，文档也是开放源码。 如果你碰巧遇到不正确的情况，拼写错误，难以理解的文本传输， 请不要犹豫地留下评论或提出相应的修改。
+
+
+<Column>
+  <ListWrapper title="A. 概况">
+    <ListElement link="./principles" type={ICONTYPE.TASKS} title="原 则" description="Design and engineering principles" />
+    <ListElement link="./architecture/software" type={ICONTYPE.ARCHITECTURE} title="结构" description="Sotware-, Cluster- and Multi Cluster Architecture" />
+  </ListWrapper>
+  <ListWrapper title="结构">
+    <Column>
+      <div>
+      <ListElement link="./structure/overview" type={ICONTYPE.FOLDER} title="概览" description="" />
+      <ListElement link="./structure/organizations" type={ICONTYPE.FILE} title="组织" description="" />
+      <ListElement link="./structure/policies" type={ICONTYPE.FILE} title="政策" description="" />
+      <ListElement link="./structure/projects" type={ICONTYPE.FILE} title="项目" description="" />
+    </div>
+    <div>
+      <ListElement link="./structure/applications" type={ICONTYPE.FILE} title="应用程序" description="" />
+      <ListElement link="./structure/granted_projects" type={ICONTYPE.FILE} title="已批准的项目" description="" />
+      <ListElement link="./structure/users" type={ICONTYPE.FILE} title="用户" description="" />
+      <ListElement link="./structure/managers" type={ICONTYPE.FILE} title="管理人员" description="" />
+    </div>
+    </Column>
+  </ListWrapper>
+
+  <ListWrapper title="使用案例">
+    <ListElement link="./usecases/saas" type={ICONTYPE.START} title="萨亚斯" description="Product with Authentication and Authorization" />
+  </ListWrapper>
+  <ListWrapper title="功能">
+    <ListElement link="./features/actions" type={ICONTYPE.FILE} title="行动" description="Customizing ZITADELs behavior using the actions feature" />
+  </ListWrapper>
+    <ListWrapper title="客户门户网站">
+      <ListElement link="../guides/manage/cloud/instances" type={ICONTYPE.INSTANCE} title="实例" description="Manage all your ZITADEL instances" />
+    </ListWrapper>
+</Column>

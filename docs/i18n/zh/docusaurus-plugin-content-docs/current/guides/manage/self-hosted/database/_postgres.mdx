@@ -1,0 +1,38 @@
+## Postgres
+
+::::caut
+Postgres 扩展目前处于测试阶段。
+:::
+
+如果您想使用 PostgreSQL 数据库而不是 CockroachDB ，您可以 [覆盖默认配置](../configure/configure.mdx)。
+
+支持当前版本 >= 14
+
+帖子可以配置如下：
+```yaml
+Database:
+  postgres:
+    Host: localhost
+    Port: 5432
+    Database: zitadel
+    MaxOpenConns: 25
+    MaxConnLifetime: 1h
+    MaxConnIdleTime: 5m
+    Options:
+    User:
+      Username: zitadel
+      Password: zitadel
+      SSL:
+        Mode: disable
+        RootCert:
+        Cert:
+        Key:
+    Admin:
+      Username: postgres
+      Password: postgres
+      SSL:
+        Mode: disable
+        RootCert:
+        Cert:
+        Key:
+```

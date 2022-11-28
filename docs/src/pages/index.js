@@ -35,7 +35,9 @@ const features = [
             <ListElement
               link="docs/guides/start/quickstart"
               type={ICONTYPE.START}
-              title={translate("Get started")}
+              title={translate({
+                message: "Get started"
+              })}
               description=""
             />
             <ListElement
@@ -47,13 +49,17 @@ const features = [
             <ListElement
               link="docs/guides/integrate/login-users"
               type={ICONTYPE.LOGIN}
-              title={translate("Login Users")}
+              title={translate({
+                message: "Login Users"
+              })}
               description=""
             />
             <ListElement
               link="docs/guides/integrate/access-zitadel-apis"
               type={ICONTYPE.APIS}
-              title={translate("Access APIs")}
+              title={translate({
+                message: "Access APIs"
+              })}
               description=""
             />
           </div>
@@ -63,25 +69,33 @@ const features = [
               iconClasses="las la-paragraph"
               roundClasses="rounded rounded-split"
               label="B2C"
-              title={translate("Solution Scenarios")}
+              title={translate({
+                message: "Solution Scenarios"
+              })}
               description=""
             />
             <ListElement
               link="docs/guides/manage/customize/branding"
               type={ICONTYPE.PRIVATELABELING}
-              title={translate("Customization")}
+              title={translate({
+                message: "Customization"
+              })}
               description=""
             />
             <ListElement
               link="docs/guides/deploy/overview"
               type={ICONTYPE.SYSTEM}
-              title={translate("Deploy")}
+              title={translate({
+                message: "Deploy"
+              })}
               description=""
             />
             <ListElement
               link="docs/guides/trainings/introduction"
               type={ICONTYPE.STORAGE}
-              title={translate("Trainings")}
+              title={translate({
+                message: "Trainings"
+              })}
               description=""
             />
           </div>
@@ -144,14 +158,20 @@ const features = [
           <ListElement
             link="./docs/apis/proto/auth"
             type={ICONTYPE.APIS}
-            title={translate("Proto Definitions")}
+            title={translate({
+                message: "Proto Definitions"
+              })}
             description=""
           />
           <ListElement
             link="./docs/apis/openidoauth/endpoints"
             type={ICONTYPE.APIS}
-            title={translate("OpenID Connect and OAuth")}
-            description={translate("Scopes, Claims, Authentication Methods, Grant Types")}
+            title={translate({
+                message: "OpenID Connect and OAuth"
+              })}
+            description={translate({
+                message: "Scopes, Claims, Authentication Methods, Grant Types"
+              })}
           />
         </ListWrapper>
       </div>
@@ -173,20 +193,32 @@ const features = [
         <ListElement
           link="./docs/concepts/principles"
           type={ICONTYPE.TASKS}
-          title={translate("Principles")}
-          description={translate("Design and engineering principles")}
+          title={translate({
+            message: "Principles"
+          })}
+          description={translate({
+            message: "Design and engineering principles"
+          })}
         />
         <ListElement
           link="./docs/concepts/architecture/software"
           type={ICONTYPE.ARCHITECTURE}
-          title={translate("Architecture")}
-          description={translate("Sotware-, Cluster- and Multi Cluster Architecture")}
+          title={translate({
+            message: "Architecture"
+          })}
+          description={translate({
+            message: "Sotware-, Cluster- and Multi Cluster Architecture"
+          })}
         />
         <ListElement
           link="./docs/concepts/structure/overview"
           type={ICONTYPE.ARCHITECTURE}
-          title={translate("Structure")}
-          description={translate("Object structure of ZITADEL")}
+          title={translate({
+            message: "Structure"
+          })}
+          description={translate({
+            message: "Object structure of ZITADEL"
+          })}
         />
       </ListWrapper>
     ),

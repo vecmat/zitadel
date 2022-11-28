@@ -1,0 +1,66 @@
+{
+  "link.title.Community": {
+    "message": "社区",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.Legal": {
+    "message": "法律",
+    "description": "The title of the footer links column with title=Legal in the footer"
+  },
+  "link.title.About": {
+    "message": "关于",
+    "description": "The title of the footer links column with title=About in the footer"
+  },
+  "link.item.label.Chat": {
+    "message": "聊天",
+    "description": "The label of footer link with label=Chat linking to https://zitadel.com/chat"
+  },
+  "link.item.label.GitHub Discussions": {
+    "message": "GitHub Discussions",
+    "description": "The label of footer link with label=GitHub Discussions linking to https://github.com/zitadel/zitadel/discussions"
+  },
+  "link.item.label.Twitter": {
+    "message": "推特",
+    "description": "The label of footer link with label=Twitter linking to https://twitter.com/zitadel"
+  },
+  "link.item.label.Linkedin": {
+    "message": "Linkedin",
+    "description": "The label of footer link with label=Linkedin linking to https://www.linkedin.com/company/zitadel/"
+  },
+  "link.item.label.Blog": {
+    "message": "博客",
+    "description": "The label of footer link with label=Blog linking to https://zitadel.com/blog"
+  },
+  "link.item.label.Terms and Conditions": {
+    "message": "条款和条件",
+    "description": "The label of footer link with label=Terms and Conditions linking to /docs/legal/terms-of-service"
+  },
+  "link.item.label.Privacy Policy": {
+    "message": "隐私政策",
+    "description": "The label of footer link with label=Privacy Policy linking to /docs/legal/privacy-policy"
+  },
+  "link.item.label.Website": {
+    "message": "网址",
+    "description": "The label of footer link with label=Website linking to https://zitadel.com"
+  },
+  "link.item.label.Contact": {
+    "message": "聯繫人",
+    "description": "The label of footer link with label=Contact linking to https://zitadel.com/contact/"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/zitadel"
+  },
+  "link.item.label.Status": {
+    "message": "状态",
+    "description": "The label of footer link with label=Status linking to https://status.zitadel.com/"
+  },
+  "link.item.label.Docs v1 (deprecated)": {
+    "message": "文档 v1 (已弃用)",
+    "description": "The label of footer link with label=Docs v1 (deprecated) linking to https://docs-v1.zitadel.com/"
+  },
+  "copyright": {
+    "message": "版权 © 2022 ZITADEL文档 - 使用 Docusaurus 构建。",
+    "description": "The footer copyright"
+  }
+}

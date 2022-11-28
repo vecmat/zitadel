@@ -1,0 +1,92 @@
+---
+title: 登录用户到您的应用程序
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import AuthMethods from "./authmethods.mdx";
+
+## 概览
+
+本指南将向您展示如何使用ZITADEL登录用户到您的应用程序(身份验证)。 它将逐步指导您掌握基本知识，并指出如何定制过程。
+
+## OIDC / OAuth 流
+
+OAuth 因此OIDC 知道三种不同的应用程序类型：
+
+- Web (塞尔维亚侧面网页应用程序, 例如java, .net, ...)
+- 原生(原生、移动或桌面应用程序)
+- 用户代理 (单页应用程序/ SPA，通常在浏览器中执行 JavaScript )
+
+根据你想要注册的应用程序类型，存在小的差异。 但无论应用类型如何，我们都建议使用验证码交换(PKCE)。
+
+请阅读以下关于 [不同客户端配置](./oauth-recommended-flows#different-client-profiles) 和为什么要使用PKCE的指南。
+
+### 代码流
+
+为了了解OAuth 及其流量，我们将简要描述最重要的流量： **授权码**。
+
+下面的图表显示了基本的授权码流程：
+
+![验证码流](/img/guides/auth_flow.png)
+
+1. 当未经认证的用户访问您的应用程序时，
+2. 您将创建授权请求到授权端点。
+3. 授权服务器 (ZITADEL) 将向用户的浏览器发送一个 HTTP 302，然后将其重定向到登录用户界面。
+4. 用户必须使用所需的认证设备进行认证。
+5. 您的应用程序将在注册的回调路径上调用(redirect_uri) 并获得授权_代码。
+6. 此授权码必须与您的应用程序验证 (client_id + client_secret) 一起发送到 token_endpoint
+7. 作为交换，授权服务器 (ZITADEL) 将返回一个access_token，如果请求刷新令牌，那么，在OIDC 的情况下，也将返回一个 id_token
+8. 接下来访问 access_token 可以调用资源服务器 (API)。 令牌将作为授权头发送。
+
+当使用PKCE 或 JWT 进行身份验证时，此流是相同的。
+
+## 创建应用程序
+
+若要创建应用程序，请在控制台中打开您的项目，然后点击应用程序部分中的“新”按钮开始。
+
+#### 应用程序类型
+
+这将启动一个向导，请您输入应用程序名称和类型。
+
+<Tabs
+    groupId="app-type"
+    default="web"
+    values={[
+        {'label': 'Web Application', 'value': 'web'},
+        {'label': 'Native Application', 'value': 'native'},
+        {'label': 'Single Page Application', 'value': 'spa'},
+    ]}
+>
+<TabItem value="web">
+
+#### 身份验证方法
+
+在选择WEB后，您下一步必须选择一个身份验证方法。 正如我们在建议使用PKCE之前提到的。
+为了更好的安全性，您可以切换到 JWT 或者仅仅依靠标准代码流。 出于安全原因，我们不
+推荐使用 POST ，不会在本指南中涵盖它。
+
+如果你在向导中这样做，请在此更改验证方法，以便我们能够更好地引导你完成该过程：
+
+<AuthMethods selected="web" />
+</TabItem>
+
+<TabItem value="native">
+
+#### 身份验证方法
+
+在选择本地时，身份验证方法总是需要为PKCE。
+
+<AuthMethods selected="native" />
+</TabItem>
+
+<TabItem value="spa">
+
+#### 认证方法
+
+选择SPA 时，推荐的认证方法是再次PKCE。 All common Frameworks like Angular, React, Vue.js and so on
+are able to successfully authenticate with PKCE. 例如，我们的 Managament 界面控制台也使用PKCE 例如，我们的 Managament 界面控制台也使用PKCE 例如，我们的 Managament 界面控制台也使用PKCE
+
+<AuthMethods selected="spa" />
+</TabItem>
+</Tabs>

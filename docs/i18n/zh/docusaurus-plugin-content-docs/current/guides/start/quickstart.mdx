@@ -1,0 +1,78 @@
+---
+title: 快速开始
+---
+
+import Column from "@site/src/components/column";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Zcloud from './_zitadel_cloud.mdx'
+import LocalInstance from './_local_instance.mdx'
+
+
+大多数应用程序都需要了解用户的身份，以便能够安全地将用户数据存储在云端，并在用户的所有设备上提供相同的个性化体验。
+
+ZITADEL的身份验证提供后端服务、易于使用的 SDK以及现成的 UI 库来验证应用程序中的用户。 它支持使用密码进行身份验证，并在第二个因素的帮助下应用额外的安全性， 例如检察官办公室，以确保安全和有保障的进入。 它还利用行业标准，如OAuth 2.0 和 OpenID Connect ，以便它可以轻松地纳入您的自定义后端。
+
+ZITADEL目前支持两种使用方式：
+- 使用ZITADEL云端免费等级开始几分钟内
+- 部署一个自己托管的 ZITADEL，你喜欢的地方
+
+## 帮助我选择
+
+如果你不确定你应该选择宽松的 [ZITADEL Cloud](../manage/cloud/overview)。
+
+选择 [ZITADEL Cloud](../manage/cloud/overview)
+
+- 完全可靠的全包方案
+- 亲民的现收现付选项免费方案
+- 全局可扩展性，运行不头疼
+- 数据驻留遵从您的客户
+
+选择 [ZITADEL自动托管](../deploy/overview)
+
+- 全部控制所有组件和您的数据
+- 在空气中运行ZITADEL或调节环境中
+- 部署更新时弹性化
+
+:::info
+支持可以通过开放源码社区或支持合同
+:::  
+
+<Tabs
+    groupId="proxy-vendor"
+    default="zcloud"
+    values={[
+        {'label': 'ZITADEL Cloud', 'value': 'zcloud'},
+        {'label': 'Local Instance', 'value': 'local'},
+    ]}
+>
+    <TabItem value="zcloud">
+        <Zcloud/>
+        <More/>
+    </TabItem>
+    <TabItem value="local">
+        <LocalInstance/>
+        <More/>
+    </TabItem>
+</Tabs>
+
+## 创建第一个项目和应用程序
+
+为了能够连接您的第一个应用程序，您必须在 ZITADEL控制台应用程序中创建一个项目和应用程序
+
+1. 点击工程菜单点
+2. 点击"+"按钮添加新项目并给出一个名称
+3. 在应用程序部分的项目细节中单击"+"按钮
+4. 当选择应用程序类型时，向导将帮助您通过创建过程使用推荐值。
+
+现在您准备将ZITADEL整合到您的应用程序中。 来看看我们的 [示例](../../examples/introduction) 以你的应用程序开始。
+
+## 选择新管理器
+
+:::note
+这发生在ZITADEL控制台
+:::
+
+ZITADEL允许您让其他用户控制ZITADEL控制器。 管理员角色可以被限制为某种写入和/或读。 这对于直接管理若干用户尤其有用。 您可以让管理员能够编辑项目设置，其他人只能创建/添加用户。
+
+> 注：ZITADEL管理人员位于ZITADEL控制台的右侧小组。

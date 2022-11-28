@@ -31,11 +31,11 @@ Key JSON
 
 ```JSON
 {
-	"type": "application",
-	"keyId": "81693565968962154",
-	"key": "-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----",
-	"clientId": "78366401571920522@acme",
-	"appId": "78366403256846242"
+    "type": "application",
+    "keyId": "81693565968962154",
+    "key": "-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----",
+    "clientId": "78366401571920522@acme",
+    "appId": "78366403256846242"
 }
 ```
 

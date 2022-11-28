@@ -1,0 +1,33 @@
+## 科克罗克
+
+ZITADEL的默认数据库是 [CockroachDB](https://www.cockroachlabs.com)。 SQL 数据库提供了一系列功能，如水平可伸缩性、数据区域性等等。
+
+数据库的默认配置如下所示：
+
+```yaml
+Database:
+  cockroach:
+    Host: localhost
+    Port: 26257
+    Database: zitadel
+    MaxOpenConns: 20
+    MaxConnLifetime: 30m
+    MaxConnIdleTime: 30m
+    Options: ""
+    User:
+      Username: zitadel
+      Password: ""
+      SSL:
+        Mode: disable
+        RootCert: ""
+        Cert: ""
+        Key: ""
+    Admin:
+      Username: root
+      Password: ""
+      SSL:
+        Mode: disable
+        RootCert: ""
+        Cert: ""
+        Key: ""
+```

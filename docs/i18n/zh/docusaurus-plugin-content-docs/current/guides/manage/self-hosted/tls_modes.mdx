@@ -1,0 +1,53 @@
+---
+title: TLS 模式
+---
+
+要允许ZITADEL在任何类型的基础设施上运行，它允许配置如何处理TLS连接。 有三种操作模式：  `external`, `enabled`, `disabled`.
+
+一般来说，这个命令在启动 ZITADEL时被设置为参数。 例如：
+
+```bash
+zitadel start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled
+```
+
+## 外部
+
+`外部` 模式允许您配置ZITADEL，使其能够指示客户端使用http。 然而，ZITADEL授权管理TLS 连接到逆向代理、网络应用防火墙或服务网格。
+
+## 已启用
+
+当使用模式 `启用` ZITADEL时，正在设置以加密方式等待传入连接。 它是直接来自客户端、逆向代理或网络应用程序防火墙的。 这使得http 连接能够在整个方式的运输级别上安全起来。
+
+If you use the mode `enabled` you need to configure ZITADEL with the nessecary TLS settings.
+
+```yaml
+TLS:
+  # 如果启用， ZITADEL将服务于所有通过 TLS (HTTPS 和 gRPC)的流量
+  # 然后您还必须提供用于连接的私钥和证书
+  # 直接或通过路径到相应文件
+  Enabled: true
+  # 到TLS 证书私钥的路径， 它将被加载到密钥
+  # 并覆盖任何退出值
+  KeyPath: #/path/to/key/file。 em
+  # TLS 证书的私钥 (keyPath 将覆盖， 如果指定的话)
+  Key: #<bas64 encoded content of a pem file>
+  # TLS 连接的证书路径 它将被加载到 Cert
+  # 并覆盖任何提取值
+  CertPath: #/path/to/cert/file. em
+  # TLS 连接的证书 (CertPath 会覆盖，如果指定的话)
+  Cer: #<bas64 encoded content of a pem file>
+```
+
+## 已禁用
+
+模式 `已禁用` ZITADEL被指示等待所有与 http 无TLS 的连接。
+
+:::注意事项
+
+请注意这不是一个安全的设置，只能用于测试系统！
+
+:::
+
+## HTTP/2
+
+要允许 ZITADEL正常工作，请确认 HTTP/2 已启用。 如果您使用的模式 `外部` 或 `已禁用` 请确保验证 h2c 兼容性。 您可以阅读更多关于ZITADEL如何在我们的 [HTTP/2 文档](/docs/guides/manage/self-hosted/http2) 中使用的信息。

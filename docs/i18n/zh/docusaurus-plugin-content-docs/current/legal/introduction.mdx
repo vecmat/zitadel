@@ -1,0 +1,26 @@
+---
+title: 概览
+--- 
+
+import {ListElement, ListWrapper, ICONTYPE} from '@site/src/components/list';
+import Column from '@site/src/components/column';
+
+本节载有与我们网站和服务用户有关的重要协定、政策和附录。
+
+所有文档都将以英语提供。
+<Column>
+  <ListWrapper title="主要文件">
+    <ListElement link="/docs/legal/terms-of-service" type={ICONTYPE.POLICY} title="服务条款" description="" />
+    <ListElement link="/docs/legal/data-processing-agreement" type={ICONTYPE.POLICY} title="数据处理协议" description="" />
+    <ListElement link="/docs/legal/privacy-policy" type={ICONTYPE.POLICY} title="隐私政策" description="" />
+  </ListWrapper>
+  <ListWrapper title="服务">
+    <ListElement link="/docs/legal/service-level-description" type={ICONTYPE.SERVICE} title="服务级别" description="Service levels offered by ZITADEL Cloud" />
+    <ListElement link="/docs/legal/terms-of-service-dedicated" type={ICONTYPE.SERVICE} title="专用实例" description="Terms and Conditions of dedicated Instances" />
+  </ListWrapper>
+  <ListWrapper title="附 件">
+    <ListElement link="/docs/legal/support-services" type={ICONTYPE.POLICY} title="支助事务" description="Support services offered by ZITADEL and CAOS Ltd." />
+    <ListElement link="/docs/legal/acceptable-use-policy" type={ICONTYPE.POLICY} title="可接受的使用策略" description="Obligations while using ZITADEL Services" />
+    <ListElement link="/docs/legal/rate-limit-policy" type={ICONTYPE.POLICY} title="评分限制策略" description="How ZITADEL will use rate limiting" />
+  </ListWrapper>
+</Column> 

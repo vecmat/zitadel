@@ -1,0 +1,84 @@
+---
+title: 组织
+---
+
+## 什么是组织？
+
+import OrgDescription from "../../../concepts/structure/_org_description.mdx";
+import Column from "@site/src/components/column";
+
+一个组织是你的项目和用户存在的地方。 审视一个 B2B 使用案例， 一个组织是一个商业伙伴，它通常有自己的品牌，并且与其他联合登录供应商一样有不同的存取环境。 一个组织的用户与其他组织分开。
+
+## 创建一个新组织
+
+要创建一个新的组织，请点击下拉的组织，然后选择“新组织”。 您可以创建一个以您登录的用户作为组织管理员的新机构，或者直接创建另一个帐户。 如果您选择您登录的用户作为组织管理员，新组织的成员将被添加到该帐户。
+
+<img
+  width="400px"
+  src="/img/console_org_select.png"
+  alt="选择组织"
+ />
+
+如果你想要让你的客户自己创建他们的组织，我们为一个组织提供一个创建表格。 `<https://://{your-domain}-{random string}.zitadel.cloud/ui/login/register/org` 客户需要填写组织名称和联系人详细信息。
+
+<img
+  width="400px"
+  src="/img/console_org_register.png"
+  alt="注册新组织"
+ />
+
+## ZITADEL如何处理用户名
+
+如果您的域设置“用户登录名必须包含orgdomain”被禁用。 在整个实例中，您的用户名将是唯一的。 目前，用户名仅允许电子邮件格式化输入。 (将很快更改)
+
+### 用户登录名必须包含 orgdomain
+
+如果此行为不适合您，ZITADEL可以在组织域名后缀用户名。 此设置名为 **用户登录名必须包含 orgdomain** 并且是您 [域设置](./instance-settings#domain-settings) 的一部分。
+
+这些登录名包含格式 `{username}@{domainname}.{zitadeldomain}`. 如果您的用户名为 `john.doe`, 生成的登录名将是 `john.doe@acme.zitadel.cloud` 这也意味着只有一个用户名为 `john.doe` 的用户可以存在于您名为 `ACME` 的组织。
+
+如果您验证您的域名或添加其他域名，ZITADEL将为您生成这些额外的登录信息。 如果组织拥有域 `acme.ch` 并验证它，那么由此产生的登录名将是 `john 。 oe@acme.ch` 除了已生成的 `john.doe@acme.zitadel.cloud` 用户现在可以使用登录名来验证您的应用程序。
+
+> 注意：您可以设置此设置为您的实例以及您的组织。 所有可用用户名都显示在用户页面顶部。
+
+## 域验证和主域
+
+一旦您成功注册了您的组织，ZITADEL将自动生成您组织的域名(e.g，acme.zitadel.cloud)。 您在您的组织内创建的用户将被此域名贴出。
+
+您可以通过使用您控制的域名后缀用户来提高用户体验。 如果 [域设置](./instance-settings#domain-settings) 中的“验证org 域名”设置设置为 true， 您必须通过DNS或HTTP挑战来证明您对域的所有权。 如果设置为 false，创建的域将自动设置为验证.
+
+一个组织可以有多个域名，但只能有一个域名。 主域定义了ZITADEL向用户显示的登录名以及access_tokens中显示的信息(`首选用户名`)。
+
+请注意，域验证也会删除所有用户的登录名，这些用户可能已经在全局组织中使用过这种组合。 （不属于特定组织的用户）。 关于我们的 acme.ch: 如果一个用户 'coyote' 存在于全球组织中，则使用 logonname coyote@acme。 h, 然后验证acme.ch 后，此登录名将被替换为 `coyote@{randomvalue.tld}` ZITADEL将通知受这一变化影响的用户。
+
+## 验证您的域名
+
+1. 浏览到您的组织
+2. 点击 **添加域**
+3. 要开始域验证，请单击域名并显示对话框，在哪里您可以在 DNS 或 HTTP 挑战方法中选择。
+4. 例如，为所用域创建一个 TXT 记录与您的DNS 提供商并点击验证。 然后，ZITADEL将继续并检查您的DNS。
+5. 当验证成功时，您可以通过点击 **将域设置为主** 来激活该域
+
+![验证域](/img/console_verify_domain.gif)
+
+> **_请注意：_** 不要删除验证码，因为ZITADEL将不时重新检查您的域的所有权。
+
+## 组织设置
+
+在组织中，您的设置优先级高于您的实例，因此覆盖其实例。 这些设置与您的实例相同。
+
+> 注意：以下链接重定向到实例设置以忽略冗余。
+
+- [**登录行为和访问**](./instance-settings#login-behaviour-and-access): 多重身份验证选项和执行， 定义是否允许使用无密码身份验证方法，设置登录生命期和高级登录界面的操作符。
+- [**身份提供者**](./instance-settings#identity-providers)：定义可供所有组织使用的国内流离失所者
+- [**密码复杂程度**](./instance-settings#password-complexity): 密码的要求 ex. 符号，数字，最小长度和更多。
+- [**锁定**](./instance-settings#lockout): 设置用户可以尝试输入密码的最大尝试次数 当数字超出时，用户会被锁定，必须解锁。
+- [**域设置**](./instance-settings#domain-settings): 用户是否使用他们的电子邮件或生成的用户名登录。 其他校验，SMTP设置
+- [**品牌**](./instance-settings#branding): 登录界面外观。
+- [**消息文本**](./instance-settings#message-texts)：电子邮件的文本和国际化
+- [**登录界面文本**](./instance-settings#login-interface-texts): 登录界面的文本和国际化
+- [**隐私政策**](./instance-settings#privacy-policy-and-tos): 链接到您自己的服务条款和隐私政策规则。 链接到帮助页面。
+
+如果您需要自定义品牌在某个组织 (例如在 B2B 场景中，允许组织使用他们的自定义设计) 导航回主页，在上面的页眉中选择您的组织，导航到组织设置并在这里设置自定义设计。
+
+登录页面的行为，应用自定义设计，然后在您的项目详细页面上定义。 在这里阅读更多关于 [的信息](./projects#branding)

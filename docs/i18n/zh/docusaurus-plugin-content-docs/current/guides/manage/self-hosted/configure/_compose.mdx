@@ -1,0 +1,37 @@
+import CodeBlock from '@theme/CodeBlock';
+import DockerComposeSource from '!!raw-loader!./docker-compose.yaml'
+import ExampleZITADELConfigSource from '!!raw-loader!./example-zitadel-config.yaml'
+import ExampleZITADELSecretsSource from '!!raw-loader!./example-zitadel-secrets.yaml'
+import ExampleZITADELInitStepsSource from '!!raw-loader!./example-zitadel-init-steps.yaml'
+
+码头组成示例将ZITADEL容器的 zitadel 配置文件挂载。
+
+通过执行下面的命令，您将下载以下文件：
+
+<details><summary>docker-compose.yaml</summary>
+    <CodeBlock language="yaml">{DockerComposeSource}</CodeBlock> </details> <details><summary>示例-zitadel-config。 aml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELConfigSource}</CodeBlock> </details> <details><summary>example-zitadel-secrets. aml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELSecretsSource}</CodeBlock> </details> <details><summary>example-zitadel-init-steps aml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELInitStepsSource}</CodeBlock> </details>
+
+```bash
+# 下载码头组成的样板配置安全的 CockroachDB
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/manage/selfhosted/configure/docker-compose.yaml
+
+下载并调整包含标准配置的示例配置文件。
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/manage/selfhosted/configure/example-zitadel-config.yaml
+
+# 下载并调整包含秘密配置的示例配置文件。
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/manage/selfhosted/configure/example-zitadel-secrets.yaml
+
+# 下载并调整包含数据库初始化配置的示例配置文件。
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/manage/self-hosted/configure/example-zitadel-init-steps aml
+
+# 单个的 ZITADEL实例总需要相同的 32 个字符长级主密钥
+# 如果您还没有这样做， 您可以生成一个新的
+# 例如：
+导出 ZITADEL_MASTERKEY="$(tr -dc A-Za-z0-9 </dev/urandom | head -c 32)"
+
+# 运行数据库和应用程序容器
+docker compose up --detach
+```

@@ -1,0 +1,95 @@
+---
+title: 项目
+---
+
+## 什么是项目？
+
+import ProjectDescription from "../../../concepts/structure/_project_description.mdx";
+
+<ProjectDescription name="ProjectDescription" />
+
+### 示例
+
+如果您建立一个销售平台点， 您将有一个项目 (可能称为 `POS`) 和您所有的应用程序 (一个用于管理的Web应用程序)。 和您为您的用户 iOS 和 Android 的移动应用程序将是它的一部分。 您必须在此项目中创建管理员和客户端的角色，然后创建基于他们的授权。
+
+![POS 项目](/img/guides/console/posproject.png)
+
+## 创建一个项目
+
+若要创建一个项目，请导航到您的组织，然后直接通过 [https:////{your_domain}。 itadel.cloud/ui/console/project](https://{your_domain}.zitadel.cloud/ui/console/projects), 然后点击按钮创建一个新项目。
+
+<img alt="空项目" src="/img/console_projects_empty.png" width="270px" />
+
+然后输入您的项目名称并继续。
+
+## 什么是获准的项目？
+
+现在想象你可以从样板中为自己使用POS平台，也可以将其卖给其他商业伙伴。 这些伙伴也许有必要拥有自己的域名、自己的品牌并增加其他社会登录选择。 在ZITADEL中设置此功能非常容易，因为所有组织都可以覆盖它们的设置。 您只需要授权他们访问的方法。
+
+向另一个组织增加赠款是由项目本身提供的。 导航到授予并点击新的按钮。 现在，输入合作伙伴组织的域名(如果你不记得它) 导航到组织并从详细页面中拿起它，点击搜索并继续。
+
+现在选择您想要这个组织使用并保存的角色。 这使您能够将某个组织锁定在某个功能之外，如果您不希望他们的用户使用它。 You can learn more about roles [here](./roles).
+
+然后组织可以自行为其用户创建授权。 向他们展示的项目与他们自己的项目相分离。
+
+<img
+  alt="已授予的项目"
+  src="/img/guides/console/grantedprojectgrid.png"
+  width="320px"
+ />
+
+## 授予项目
+
+1. 访问您以前创建的项目 `POS` 项目，然后在版块 **赠予** 点击 **新**
+
+<img src="/img/guides/console/grantsmenu.png" alt="补助金" width="170px" />
+
+2. 输入您想要授予的机构域名(如果您不记得它，请转到机构详细信息页面)， 点击搜索按钮并继续。
+3. 选择您想要授予组织并确认的一些角色。
+4. 您现在应该在 **赠与**部分中看到授予的组织。
+
+## 项目设置
+
+### 品牌化
+
+如果您有不同的组织设计，或者可能并使用项目赠款，您可以在项目细节页面定义登录行为。
+
+<img
+  src="/img/guides/console/projectbranding.png"
+  alt="工程品牌化"
+  width="400px"
+ />
+
+您可以选择从
+
+| 设置            | 描述                                                             |
+| ------------- | -------------------------------------------------------------- |
+| 未指定           | 如果没有指定任何内容，默认将触发器。 (系统设置)                                      |
+| 强制执行项目资源所有者政策 | 此设置将通过整个登录过程，强制对项目组织(资源所有者)进行私有标签。                             |
+| 允许登录用户资源所有者政策 | 此设置首先会触发项目组织的私有标签(资源所有者)。 一旦ZITADEL确认用户及其组织(资源所有者)，设置将更改为用户组织。 |
+
+在B2B的情况下，您通常使用机构设置。 如果您想省略机构组织检测，您可以预先选择一个 [主域范围](/docs/apis/openidoauth/scopes#reserved-scopes) (例如： `urn:zitadel:iam:org:domain:primary:{domainname}`)。
+
+### 角色设置
+
+在品牌设置下，您可以选择不同的复选框来获取更多的自定义认证行为。
+
+- **认知身份验证身份**: 角色信息是从用户信息端点发送的，取决于您的应用程序设置的令牌和其他类型。
+- **在身份验证上检查授权**: 如果设置, 用户只允许验证任何角色被分配给他们的帐户。
+- **在身份验证上检查项目**: 已检查用户的机构是否有此项目。 如果没有，用户无法进行身份验证。
+
+<img
+  src="/img/guides/console/rolesettings.png"
+  width="700px"
+  alt="角色设置"
+ />
+
+如果您想要在您的标记上有角色，就必须在您的应用程序中设置，因为这取决于您的应用程序类型。 导航到您的应用程序，如果您想要，请检查此设置。
+
+<img
+  src="/img/guides/console/tokenroles.png"
+  width="700px"
+  alt="代币角色"
+ />
+
+您可以在下一节了解更多关于 [应用程序和令牌设置](./applications#token-settings) 的信息。

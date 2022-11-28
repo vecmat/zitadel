@@ -1,0 +1,243 @@
+---
+title: 概览
+---
+
+import { ApiCard } from "@site/src/components/apicard";
+import Column from "@site/src/components/column";
+
+## APIs
+
+ZITADEL为不同用途提供了五个API。 其中四个API是用GRPC构建的，并生成REST服务。 每个服务的协议定义都位于GitHub 上的源代码之下。 当我们从原型定义中生成REST 服务和 Swagger 文件时，我们建议您依靠proto 文件。 我们在每个可能的通话以及AuthN 和 AuthZ 要求上注明相应的REST 方法。 最后一个 API (assets) 仅是一个REST API ，因为ZITADEL使用多部分形式数据处理某些元素。
+
+### Proto
+
+我们所有的 API 都是由proto 定义生成的。 您可以在 [Proto API 定义](proto/auth) 中找到所有的 proto 定义。
+
+> 更多关于 [协议缓存](https://developers.google.com/protocol-buffers)
+
+### Swagger 文档
+
+我们为我们的 API 的 swagger 文档提供了一些json 文件，其链接如下： [https://zitadel.cloud/openapi/v2/swagger/](https://zitadel.cloud/openapi/v2/swagger/)
+
+查看它们最简单的方法是将它们导入到 [Swagger 编辑器](https://editor.swagger.io/)
+
+<ApiCard title="认证" type="AUTH">
+<Column>
+<div>
+
+## Authentication
+
+The authentication API (aka Auth API) is used for all operations on the currently logged in user. 用户id取自令牌中的子声明。
+
+</div>
+<div class="apicard-right">
+
+### GRPC
+
+终点：
+{your_domain}/zitadel.auth.v1.uthService/
+
+定义：
+[Auth Proto](/docs/apis/proto/auth)
+
+### REST
+
+端点：
+{your_domain}/auth/v1/
+
+Swagger Editor：
+[editor.swagger.io](https://editor.swagger.io/?url=https://zitadel.cloud/openapi/v2/swagger/auth.swagger.json)
+
+定义：
+[Swagger Definition](https://zitadel.cloud/openapi/v2/swagger/auth.swagger.json)
+
+</div>
+</Column>
+</ApiCard>
+
+<ApiCard title="管理" type="MGMT">
+<Column>
+
+<div>
+
+## 管理
+
+管理API是用来表示系统可以变换IAM对象的接口的。 如果他们拥有必要的访问权，那么他们就会有组织、项目、客户、用户等等。
+要识别当前的组织，您可以发送头 `x-zitadel-orgid` ，或者如果没有设置标题，则设置认证用户的组织。
+
+</div>
+<div class="apicard-right">
+
+### GRPC
+
+终点：
+{your_domain}/zitadel.management.v1.ManagementService/
+
+定义：
+[Management Proto](/docs/apis/proto/management)
+
+### REST
+
+终点：
+{your_domain}/management/v1/
+
+Swagger Editor：
+[editor.swagger.io](https://editor.swagger.io/?url=https://zitadel.cloud/openapi/v2/swagger/management.swagger.json)
+
+定义：
+[Swagger Definition](https://zitadel.cloud/openapi/v2/swagger/management.swagger.json)
+
+</div>
+</Column>
+</ApiCard>
+
+<ApiCard title="行政管理" type="ADMIN">
+<Column>
+<div>
+
+## 管理
+
+此 API 旨在配置和管理一个 ZITADEL实例本身。
+
+</div>
+<div class="apicard-right">
+
+### GRPC
+
+终点：
+{your_domain}/zitadel.admin.v1.AdminService/
+
+定义：
+[Admin Proto](/docs/apis/proto/admin)
+
+### REST
+
+端点：
+{your_domain}/admin/v1/
+
+Swagger Editor：
+[editor.swagger.io](https://editor.swagger.io/?url=https://zitadel.cloud/openapi/v2/swagger/admin.swagger.json
+
+定义：
+[Swagger Definition](https://zitadel.cloud/openapi/v2/swagger/admin.swagger.json)
+
+</div>
+</Column>
+</ApiCard>
+
+<ApiCard title="管理" type="SYSTEM">
+<Column>
+<div>
+
+## 系统
+
+此 API 旨在管理系统内不同的 ZITADEL实例。
+
+检查如何[访问ZITADEL系统 API](/docs/guides/integrate/access-zitadel-system-api)
+
+</div>
+<div class="apicard-right">
+
+### GRPC
+
+终点：
+{your_domain}/zitadel.system.v1.SystemService/
+
+定义：
+[System Proto](/docs/apis/proto/system)
+
+### REST
+
+终点：
+{your_domain}/system/v1/
+
+Swagger Editor：
+[editor.swagger.io](https://editor.swagger.io/?url=https://zitadel.cloud/openapi/v2/swagger/system.swagger.json)
+
+定义：
+[Swagger Definition](https://zitadel.cloud/openapi/v2/swagger/system.swagger.json)
+
+</div>
+</Column>
+</ApiCard>
+
+<ApiCard title="资产" type="ASSET">
+<Column>
+<div>
+
+## 资产
+
+资产API允许您上传和下载所有类型的资产。 这可以是诸如logos、字体或用户头像等文件。
+
+</div>
+<div>
+
+### REST
+
+终点：
+{your_domain}/assets/v1/
+
+定义：
+[Assets](./assets/assets.md)
+
+</div>
+</Column>
+</ApiCard>
+
+## 示例
+
+请参阅下面的示例来获取调用 **GetMyUser**。
+
+```Go
+  //User
+  rpc GetMyUser(google.protobuf.Empty) returns (UserView) {
+    option (google.api.http) = {
+      get: "/users/me"
+    };
+
+    option (zitadel.v1.auth_option) = {
+      permission: "authenticated"
+    };
+  }
+```
+
+你可以看到 `GetMyUser` 功能也可以作为路径 `/users/me` 下的REST 服务。
+
+在下表中，您可以看到这些调用的 URI。
+
+| 服务   | URI                                                 |
+|:---- |:--------------------------------------------------- |
+| 重力   | {your_domain}/auth/v1/users/我                       |
+| GRPC | {your_domain}/zitadel.auth.v1.AuthService/GetMyUser |
+
+## 域
+
+ZITADEL在单个域下托管一切︰ `{instance}.zitadel.cloud` 或您的自定义域 `{your_domain}`
+
+:::note
+来自 ZITADEL V1的更改： 知道发行者、api, 帐户和控制台域名不存在。
+:::
+
+该域被用作OIDC 发行者和GRPC 和 REST API的基础url。 您可以在 `{your_domain}/ui/console/` 下找到的登录界面。
+
+## ZITADEL路径前缀
+
+如果您在一个自定义域上运行 ZITADEL，您可能想要重新使用该域用于其他应用程序。 为了简单地复制到您的反向代理配置，这里是URL 路径前缀的列表, ZITADEL。
+
+```
+/zitadel.admin.v1.AdminService/
+/admin/v1/
+/zitadel.auth.v1.AuthService/
+/auth/v1/
+/zitadel.management.v1.ManagementService/
+/management/v1/
+/zitadel. ystem.v1.SystemService/
+/system/v1/
+/assets/v1/
+/ui/
+/oidc/v1/
+/saml/v2/
+/oauth/v2/
+/.wellknown n/openid-configuration
+/openapi/
+```

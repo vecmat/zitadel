@@ -1,0 +1,27 @@
+import CodeBlock from '@theme/CodeBlock';
+import ExampleZITADELValuesSource from '!!raw-loader!./example-zitadel-values.yaml'
+import ExampleZITADELValuesSecretsSource from '!!raw-loader!./example-zitadel-values-secrets.yaml'
+
+默认情况下，该图表会安装一个安全的 ZITADEL和CockroachDB。 示例文件使得一个不安全的ZITADEL可以通过将ZITADEL服务转发给本地主机的港口访问。 若要更多配置选项， [请转到图表仓库描述](https://github.com/zitadel/zitadel-charts)。 要使用 Docker Compose, [前往负载平衡示例](../../deploy/loadbalancing-example)
+
+通过执行下面的命令，您将下载以下文件：
+
+<details><summary>示例-zitadel-values.yaml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELValuesSource}</CodeBlock> </details> <details><summary>示例-zitadel-values-secret。 aml</summary>
+    <CodeBlock language="yaml">{ExampleZITADELValuesSecretsSource}</CodeBlock> </details>
+
+```bash
+# 下载并调整标准配置的示例配置文件
+wget https://raw。 ithubusercontent.com/zitadel/zitadel/main/docs/guides/manages/self-hosted/configure/example-zitadel-values.yaml
+
+# 下载并调整包含秘密配置的示例配置文件
+wget https://raw。 ithubusercontent.com/zitadel/zitadel/main/docs/guides/manage/selfhosted/configure/example-zitadel-values-secrets. aml
+
+# 安装一个不安全的 zitadel 版本，用于本地主机
+helm 安装--namespace zitadel --create-namespace my-zitadel zitadel zitadel/zitadel \
+  --values 。 示例-zitadel-values.yaml \
+  --values ./example-zitadel-values-secrets. aml
+
+# 将 ZITADEL服务端口转发到您的本地机器
+kubectl --namespace zitadel port-forward svc/my-zitadel 8080:80
+```

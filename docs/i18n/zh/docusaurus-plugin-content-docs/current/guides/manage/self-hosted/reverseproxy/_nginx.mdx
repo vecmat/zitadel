@@ -1,0 +1,95 @@
+## 外部TLS模式
+
+```
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+
+http {
+    server {
+        listen 443;
+
+        ssl_certificate     ssl/certificate.pem;
+        ssl_certificate_key ssl/key.pem;
+
+        location / {
+            grpc_pass grpc://localhost:8080;
+            grpc_set_header Host $host;
+        }
+    }
+}
+```
+
+:::info
+如果使用默认的 HTTPS 端口 443 的另一个端口被替换
+
+`grpc_set_header Host $host;`
+
+与
+
+`grpc_set_header Host $host:$server_port;`
+:::
+
+## TLS 模式已启用
+
+```
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+
+http {
+    server {
+        listen 443;
+
+        ssl_certificate     ssl/certificate.pem;
+        ssl_certificate_key ssl/key.pem;
+
+        location / {
+            grpc_pass grpcs://localhost:8080;
+            grpc_set_header Host $host;
+        }
+    }
+}
+```
+
+:::info
+如果使用默认的 HTTPS 端口 443 的另一个端口被替换
+
+`grpc_set_header 主机 $host;`
+
+与
+
+`grpc_set_header Host $host:$server_port;`
+:::
+
+## TLS 模式已禁用
+
+```
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+
+http {
+    server {
+        listen 80;
+
+        location / {
+            grpc_pass grpc://localhost:8080;
+            grpc_set_header Host $host;
+        }
+    }
+}
+```
+
+:::info
+如果使用了默认的 HTTP 端口 80 以外的另一个端口被替换
+
+`grpc_set_header Host $host;`
+
+与
+
+`grpc_set_header Host $host:$server_port;`
+:::

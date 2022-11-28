@@ -1,0 +1,42 @@
+---
+title: 如何为您的场景配置 ZITADEL。
+---
+
+每个客户确实有不同的需要和使用案例。 在 ZITADEL中，您可以根据您的需要配置您的设置。 在本节中，我们向您展示了我们已经经历的不同的使用案例，这会引起您的兴趣。
+
+
+## 如果机构只有一个身份提供者，自动重定向用户
+
+您在 ZITADEL实例中有不同的客户(组织)，他们在如何验证用户方面有不同的需要。 您的客户之一只允许使用外部身份提供商登录，如Google、Azure AD等等。 如果该组织的用户想登录，您不想让他们在ZITADEL登录界面输入他们的用户名 它们应直接转向身份提供者，而不应相互交流。
+
+### 设置
+
+1. 转到组织的“身份提供者”设置
+2. 配置所需的身份提供者：如果你不知道如何, 请阅读 [指南](../integrate/identity-brokering.md)
+3. 转到组织的“登录行为和安全”设置
+4. 禁用“用户名密码”并在高级部分启用"外部ID许可"
+
+现在，您的应用程序可以在您的授权请求上发送组织 id (`urn:zitadel:iam:org:id:{id}`) 或组织主域(`urn:zitadel:iam:iam:org:domain:primary:{domainname}`) 范围来识别用户应该登录的组织。
+
+更多关于 [范围](../../apis/openidoauth/scopes#reserved-scopes)
+
+## 每个组织的自定义应用程序域
+
+如果你有一个为每个客户运行一个专用域的应用程序，你需要指示ZITADEL允许每个域重定向以防止钓鱼攻击。
+
+例如： MyApplication: customer-a.app.com ZITADEL登录: login.app.com
+
+在 OIDC 授权请求中，您总是必须将重定向的 URI 发送到登录后您想要重定向的地方。 为了处理这种情况，可以在ZITADEL的每个申请上注册多个URI。 唯一的标准是请求的 URI 必须匹配注册的 URI 之一。
+
+阅读更多关于 [应用程序](../manage/console/applications) 和 [重定向urls](../manage/console/applications#redirect-uris)
+
+### ZITADEL登录时触发组织
+
+在向ZITADEL提出授权请求后，可以直接启动该组织。
+
+这将产生以下影响：
+- 触发组织登录行为设置
+- 触发组织品牌化
+- 只允许所选机构的用户登录
+
+若要请求组织，请从您的应用程序发送组织ID (`urn:zitadel:iam:org:id:{id}`) 或组织主要域 (`urn:zitadel:iam:org:domain:primary:{domainname}`) 在您的身份验证请求上发送范围。 更多关于 [范围](../../apis/openidoauth/scopes#reserved-scopes)

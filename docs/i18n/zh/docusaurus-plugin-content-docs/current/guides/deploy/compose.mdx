@@ -1,0 +1,28 @@
+---
+title: Docker 配置
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import DockerComposeSource from '!!raw-loader!./docker-compose.yaml'
+import Disclaimer from './_disclaimer.mdx'
+import DefaultUser from './_defaultuser.mdx'
+import Next from './_next.mdx'
+
+安装程序测试的 Docker 版本 20.10.17 Docker Compose 版本 v2.2.3
+
+通过执行下面的命令，您将下载以下文件：
+
+<details><summary>docker-compose.yaml</summary>
+    <CodeBlock language="yaml">{DockerComposeSource}</CodeBlock> </details>
+
+```bash
+# 下载Docker compose示例配置。
+wget https://raw.githubusercontent.com/zitadel/zitadel/main/docs/guides/depose/docker-compose.yaml
+
+# 运行数据库和应用程序容器。
+停靠机坪构造--detach
+```
+
+<DefaultUser components={props.components} />
+<Next components={props.components} />
+<Disclaimer components={props.components} />

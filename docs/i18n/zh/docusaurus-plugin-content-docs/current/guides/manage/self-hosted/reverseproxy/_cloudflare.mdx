@@ -1,0 +1,16 @@
+## 设置
+
+- [请确认 HTTP/2 已启用](https://support.cloudflare.com/hc/en-us/articles/200168076-Understanding-Cloudflare-HTTP-2-and-HTTP-3-Support)
+- [验证是否启用 gRPC](https://support.cloudflare.com/hc/en-us/articles/360050483011-Understanding-Cloudflare-gRPC-support)
+- [验证流量通过云层代理](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/)
+- [配置 ZITADEL以使用 TLS 模式启用](/docs/guides/manage/self-hosted/tls_modes#enabled)
+
+:::info
+[云端仅支持 gRPC 与 TLS ！](https://support.cloudflare.com/hc/en-us/articles/360050483011-Understanding-Cloudflare-gRPC-support) ::: :
+
+## 故障排除
+
+如果有些东西不起作用，请检查云端WF规则是否有可能发生违反情事。 这两条规则已知被触发：
+
+- 100001 Anomaly:Header:User-Agent - 缺少云层专家
+- 100004 Anomaly:Header:User-Agent, Anomaly:Header:Referer - 丢失或为空

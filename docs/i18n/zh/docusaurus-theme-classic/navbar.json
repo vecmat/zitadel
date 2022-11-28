@@ -1,0 +1,38 @@
+{
+  "item.label.Guides": {
+    "message": "指南",
+    "description": "Navbar item with label Guides"
+  },
+  "item.label.Examples": {
+    "message": "示例",
+    "description": "Navbar item with label Examples"
+  },
+  "item.label.APIs": {
+    "message": "APIs",
+    "description": "Navbar item with label APIs"
+  },
+  "item.label.Concepts": {
+    "message": "概念",
+    "description": "Navbar item with label Concepts"
+  },
+  "item.label.Help": {
+    "message": "帮助",
+    "description": "Navbar item with label Help"
+  },
+  "item.label.Legal": {
+    "message": "法律",
+    "description": "Navbar item with label Legal"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.Chat": {
+    "message": "聊天",
+    "description": "Navbar item with label Chat"
+  },
+  "item.label.Discussions": {
+    "message": "讨论",
+    "description": "Navbar item with label Discussions"
+  }
+}

@@ -1,0 +1,70 @@
+---
+title: 用户
+---
+
+ZITADEL不同于两种不同类型的用户：
+
+- 用户 (Humans)
+- 服务用户 (Machine 帐户)
+
+<img src="/img/guides/console/usersmenu.png" width="420px" alt="用户类型" />
+
+用户有电子邮件地址和密码，还可以保存有关电话、昵称、性别、语言的信息。 服务用户只有一个名字和一个描述，放弃他的用户名。
+
+服务用户可以通过 JWT 个人资料或个人访问令牌进行身份验证。 这两种方法都可以指定一个过期。 用户可以用密码验证自己，添加多个因素以增加安全性，并启用无密码身份验证。
+
+服务用户主要用于获取后端服务或iot设备的访问权限。 服务用户也可以是ZITADEL管理人员这一事实被用来限制进入具体项目或组织。 要了解如何使用服务用户，请查看我们的 NextJS B2B 演示应用程序。
+
+## 创建用户
+
+若要创建一个新用户，请前往用户并点击 **新**。 输入所需的联系人详细信息并点击“创建”进行保存。
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+  <TabItem value="human" label="Human User" default>
+    <img src="/img/guides/console/addhuman.png" width="680px" alt="添加人" />
+  </TabItem>
+  <TabItem value="service" label="Service User">
+    <img
+      src="/img/guides/console/addmachine.png"
+      width="540px"
+      alt="添加服务用户"
+    />
+  </TabItem>
+</Tabs>
+
+在创建人类用户后，默认情况下，一个带有代码的初始化邮件将发送到注册电子邮件。 这个代码必须在首次登录时进行验证。 如果您想要省略此邮件，您可以检查 **电子邮件验证** 和 **设置初始密码** 切换。 如果最初没有设置密码，则发送初始化邮件提示用户设置密码。
+
+您也可以通过在 [登录行为设置中检查 **Force MFA** 切换来促使用户添加第二个系数方法](./instance-settings#login-behaviour-and-access)。
+
+登录后，用户可以自己在控制台管理他的个人资料，添加个人资料图片、外部境内流离失所者和无密码认证设备。
+
+<img src="/img/guides/console/myprofile.png" alt="自我管理" />
+
+## 元数据
+
+在构建复杂的应用程序时，有可能添加元数据至关重要。 ZITADEL为用户页面上的用户提供一个关键值存储。 只需导航到第 **元数据** 部分，然后点击 **编辑**
+
+> 在我们项目指南的 [销售点示例](./projects#example) 中，您可以添加一个 `stripeCustomerId` 作为元数据键。 在您的客户端应用程序中，您可以轻松地从 Stripe API获取客户付款。
+
+<img
+  width="460px"
+  src="/img/guides/console/usermetadata.png"
+  alt="用户元数据"
+ />
+
+元数据可以通过我们的认证和管理 API 请求用户信息端点或 ID 令牌。 要从 userinfo 端点获取您的元数据，请在您的身份验证请求中添加 `urn:zitadel:iam:user:metata` 查看我们的预留范围 [这里](/docs/apis/openidoauth/scopes#reserved-scopes) 或查看我们的 [元数据指南](../customize/user-metadata)。
+
+然后您可以在应用程序设置中切换 **用户信息在 ID 令牌** 中，如果您也需要此信息在 ID 令牌中。
+
+<img
+  src="/img/guides/console/appidtokensettings.png"
+  width="650px"
+  alt="ID令牌设置"
+ />
+
+## 授权
+
+正如 [角色和授权](./roles)所述，授权也显示在用户配置文件页面上。 如果您需要用户角色在用户信息端点， 在您的项目中检查 **Assert身份验证** 复选框中的角色，就像 [授权](./roles#authorizations) 中所述。 如果您需要他们，请在应用程序设置中切换 **用户角色在 ID 令牌** 中。

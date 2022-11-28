@@ -1,0 +1,40 @@
+---
+title: Kubernetes
+---
+
+import Disclaimer from './_disclaimer.mdx'
+import DefaultUser from './_defaultuser.mdx'
+import Next from './_next.mdx'
+
+安装和配置详情在 [开源的 ZITADEL 图表repo](https://github.com/zitadel/zitadel-charts) 中描述。 默认情况下，该图表会安装一个安全和高度可用的 ZITADEL实例。 若要运行一个易于四周无保障的 ZITADEL，请运行以下命令。
+
+## 头盔
+
+### 添加头盔仓库
+
+```bash
+helm repo addition zitadel https://charts.zitadel.com
+```
+
+### 安装一个不安全的 zitadel 版本，用于本地主机
+
+```bash
+helm install --namespace zitadel --create-namespace my-zitadel zitadel/zitadel \
+  --set zitadel.masterkey="MasterkeyNeedsToHave32Characters"
+  --set zitadel.configmapConfig.ExternalSecure=false
+  --set zitadel.configmapConfig. LS.Enabled=false
+  --set zitadel.secretConfig.Database.cockroach.User.password="a-zitadel-db-user-password"
+  --set replicaCount=1 \
+  --set cockroachdb.sinnode=true \
+  --set cockroachdb.statefulset.replicas=1
+```
+
+### 将 ZITADEL服务端口转发到您的本地机
+
+```bash
+kubectl -n zitadel port-forward svc/my-zitadel 8080:8080
+```
+
+<DefaultUser components={props.components} />
+<Next components={props.components} />
+<Disclaimer components={props.components} />

@@ -1,0 +1,15 @@
+#All possible options and their defaults: https://github.com/zitadel/zitadel/blob/main/cmd/defaults.yaml
+zitadel:
+  configmapConfig:
+    Log:
+      Level: '信息'
+    #Make ZITADEL accessible over HTTP, not HTTPS
+    ExternalSecure: false
+    ExternalDomain: 本地主机
+    #the configmap is also passed to the zitadel binary via the --steps flag
+    FirstInstance:
+      Org:
+        Human:
+          #use the loginname root@zitadel.localhost
+          Username: '根目录'
+          Password: 'Root密码1！'

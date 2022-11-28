@@ -1,0 +1,17 @@
+ZITADEL是围绕以下想法组织的：
+
+* 可以在 [实例](/docs/concepts/structure/instance) 中管理多个组织。
+* 各组织可以相互授予自我管理内部管理机制某些方面的权利(例如准入管理的作用)
+* 本组织是供用户和项目使用的船只。
+
+![ZITADEL组织概览](/img/concepts/objects/organization.png)
+
+因此，ZITADEL的组织与目录系统的系统或组织单位的租户相当。
+
+您可以使用您组织内的项目来管理密切相关组件的安全环境，如多个客户端的角色、授予和授权。 您可以在您的组织内设置多个项目。
+
+ZITADEL允许您允许其他组织自行管理项目的某些方面。 这意味着您可以设置一个在您的服务/软件中应该存在的角色的项目。 但允许另一个组织将角色分配给自己组织内的用户。 作为服务提供商，您会发现此功能是有用的，因为它允许您为您的商业客户建立一种自助文化。
+
+![组织授权](/img/concepts/objects/organization_grants.png)
+
+每个组织都有自己的用户名库，其中包括人和服务用户的域名(`{username}@{domainname})。{zitadeldomain}`。 用户名在您的组织中是唯一的。 您可以配置 ZITADEL以使用您自己的域名并简化用户体验(`{loginname}@{yourdomain.tld}`)。
